@@ -2,6 +2,8 @@
 
 从消费表达识别购买阻力，提出沉默群组的研究假设，以最小实验探索增长机会。
 
+**[在线体验 Demo](https://chrisghubhub.github.io/lost-demand-lab/)** · [GitHub 源码](https://github.com/chrisghubhub/lost-demand-lab)
+
 这是用于作品展示的交互式静态 Demo，版本 **v0.9.6**。本次发布使用作者提供的 `不买账实验室_RedCodework单文件版_v0.9.6.html`，将其原样命名为 `index.html`，没有改动业务逻辑。此版本不包含后续讨论中的 P0/P1 规则评分改造。
 
 > 所有评论、群组、搜索信号、浏览、加购和成交数值均为合成演示数据。没有连接小红书后台，没有实时大模型调用，也没有真实商业实验结果。案例灵感与演示数据应分开理解。
