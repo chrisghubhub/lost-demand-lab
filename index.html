@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f7f8fa" />
+  <meta name="description" content="不买账实验室：从消费表达识别购买阻力，理解沉默群组，以最小实验验证商业增长机会。" />
+  <title>不买账实验室 · Lost Demand Lab</title>
+  <style>
+:root{--bg:#f6f7f5;--paper:#fff;--sidebar:#fff;--ink:#202725;--muted:#78817e;--light:#9ba39f;--line:#e9ece8;--accent:#e95440;--accent-weak:#fff1ec;--green:#2c806b;--green-bg:#e9f5ef;--amber:#ad792f;--amber-bg:#fff5df;--shadow:0 12px 46px rgba(24,39,32,.045);--radius:17px}
+*{box-sizing:border-box}html{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);font-size:14px;scroll-behavior:smooth}body{margin:0}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #f8b09f;outline-offset:3px}h1,h2,h3,h4,p{margin:0}a{color:inherit}strong{font-weight:660}::selection{background:#f7d1c7}
+.app-shell{display:grid;grid-template-columns:246px minmax(0,1fr);min-height:100vh}.sidebar{background:var(--sidebar);border-right:1px solid var(--line);padding:29px 18px 21px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;z-index:30}.brand{display:flex;align-items:center;gap:11px;padding:0 8px;margin-bottom:56px}.brand-mark{position:relative;display:grid;grid-template-columns:repeat(2,9px);grid-template-rows:repeat(2,9px);gap:4px;transform:rotate(-14deg)}.brand-mark span{display:block;width:9px;height:9px;background:var(--accent);border-radius:3px}.brand-mark span:nth-child(2){opacity:.38}.brand-mark span:nth-child(3){opacity:.68}.brand-mark span:nth-child(4){opacity:.86}.brand-title{font-size:17px;font-weight:790;letter-spacing:.2px}.brand-sub{font-size:9px;font-weight:750;letter-spacing:1.9px;color:#a9aba9;margin-top:3px}.sidebar-section-label{font-size:10px;letter-spacing:1.2px;color:#9aa5a1;font-weight:750;padding:0 16px;margin-bottom:12px}.side-nav{display:grid;gap:5px}.nav-link{border:0;background:transparent;display:flex;align-items:center;gap:12px;text-align:left;padding:14px 13px;border-radius:11px;color:#6e7774;font-weight:590;font-size:13px;transition:.2s}.nav-link:hover{background:#f8f7f5;color:var(--ink)}.nav-link.active{background:#fff0eb;color:#c84938;font-weight:760}.nav-index{font-variant-numeric:tabular-nums;font-size:11px;color:#a5ada8;font-weight:750}.nav-link.active .nav-index{color:#c84938}.nav-arrow{margin-left:auto;color:#c8d0cb;opacity:0}.nav-link:hover .nav-arrow,.nav-link.active .nav-arrow{opacity:1}.nav-link.active .nav-arrow{color:#c84938}.side-divider{height:1px;background:var(--line);margin:27px 7px 25px}.case-side-card{margin:1px 6px;padding:15px;border:1px solid var(--line);border-radius:14px;background:linear-gradient(145deg,#fff,#fafaf8)}.case-icon{width:32px;height:32px;border-radius:9px;background:#f6eee8;display:grid;place-items:center;margin-bottom:12px}.case-name{font-weight:780;font-size:13px}.case-caption{font-size:11px;color:var(--muted);margin-top:6px}.case-divider{height:1px;background:var(--line);margin:14px 0 11px}.dot,.live-dot{display:inline-block;width:6px;height:6px;border-radius:100%;background:#e8a663;margin-right:7px;vertical-align:middle}.case-tag{font-size:10px;color:#8c948f}.sidebar-bottom{margin-top:auto}.side-utility{padding:12px 13px;display:flex;align-items:center;gap:12px;width:100%;color:#636c68;border:0;background:transparent;text-align:left;border-radius:10px;font-size:12px;font-weight:560}.side-utility:hover{background:#f7f8f7}.side-utility>span:first-child{font-size:17px;color:#8c9690;width:18px}.side-chevron{margin-left:auto}.toggle-mini{width:29px;height:16px;border-radius:15px;background:#dadfda;margin-left:auto;display:flex;align-items:center;padding:3px;transition:.2s}.toggle-mini i{background:#fff;border-radius:50%;width:10px;height:10px;transition:.2s}.toggle-mini.on{background:var(--accent)}.toggle-mini.on i{transform:translateX(13px)}.side-foot{font-size:10px;color:#adb5b0;line-height:1.8;margin:23px 12px 0}.side-foot b{color:var(--accent)}
+.main-area{min-width:0;display:flex;flex-direction:column}.topbar{height:67px;flex-shrink:0;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.72);padding:0 35px;gap:12px}.topbar-left,.topbar-right{display:flex;align-items:center;gap:13px;font-size:12px}.topbar-left .crumb,.crumb-sep{color:#9ca5a0}.topbar-left strong{font-weight:670}.topbar-right{color:#88928c;font-size:11px;gap:9px}.topbar-right .live-dot{background:#44a487;width:6px;height:6px;margin:0}.topbar-divider{height:15px;width:1px;background:#e3e8e3;margin:0 7px}.version{font-size:10px;font-weight:760;letter-spacing:1px}.icon-button{border:1px solid #dde4dd;width:25px;height:25px;border-radius:50%;background:transparent;display:grid;place-items:center;color:#89928c;font-size:12px;font-weight:800}.icon-button:hover{background:#f4f5f3;color:var(--ink)}.mobile-menu{display:none}.content{width:min(1450px,100%);margin:0 auto;padding:25px 36px 60px;flex:1}.demo-notice{border:1px solid #f0e1ce;background:#fff9ee;color:#98734b;border-radius:9px;padding:10px 15px;display:flex;align-items:center;gap:10px;font-size:11px;line-height:1.65;margin-bottom:31px}.demo-notice strong{color:#875e35}.demo-notice button{color:#92643f;margin-left:auto;white-space:nowrap;background:none;border:none;text-decoration:underline;text-underline-offset:3px;font-size:11px}.notice-icon{color:#e6a261;font-size:14px}.main-footer{padding:16px 36px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#afb7b2;gap:10px;font-size:10px;letter-spacing:.3px}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:2px;font-weight:810;color:var(--accent)}.page-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:26px}.page-heading h1{font-size:30px;line-height:1.3;letter-spacing:-.7px;font-weight:840;margin:9px 0 10px}.page-heading p{font-size:13px;color:#7b8480;line-height:1.75;max-width:700px}.page-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}.button{border:1px solid #dfe5df;border-radius:10px;background:white;color:#414943;padding:10px 14px;line-height:1.3;font-size:12px;font-weight:710;display:inline-flex;align-items:center;justify-content:center;gap:9px;white-space:nowrap;transition:.15s}.button:hover{border-color:#c5cbc4;transform:translateY(-1px)}.button.primary{background:var(--ink);border-color:var(--ink);color:#fff}.button.primary:hover{background:#343e37}.button.accent{background:var(--accent);border-color:var(--accent);color:#fff}.button.accent:hover{background:#d74735}.button.ghost{border:none;background:transparent}.button.small{padding:8px 10px;font-size:11px}.button:disabled{opacity:.45;cursor:not-allowed;transform:none}.button-arrow{font-size:16px}.design-note{background:#f0f7f1;color:#52785f;border:1px dashed #b7d1c0;border-radius:9px;padding:11px 13px;font-size:11px;line-height:1.8;margin-top:13px}.design-note strong{color:#32604c}.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);min-width:0}.panel-head{padding:19px 22px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}.panel-title{font-size:15px;font-weight:780}.panel-sub{font-size:11px;color:#97a09b;margin-top:6px}.panel-body{padding:2px 22px 22px}.panel-info{border:0;background:#f5f7f4;border-radius:50%;color:#8c9790;width:23px;height:23px;font-size:13px;font-weight:600}.panel-info:hover{background:#ecf2ec;color:#48564d}.pill{display:inline-flex;align-items:center;gap:5px;font-size:10px;border:1px solid #e7e9e4;color:#828c85;background:#fafbf9;padding:5px 8px;border-radius:100px;font-weight:650;white-space:nowrap}.pill.green{border-color:#d6eadc;background:var(--green-bg);color:var(--green)}.pill.orange{background:var(--accent-weak);border-color:#f7dad2;color:#cb5746}.pill.amber{border-color:#f2e5c4;background:var(--amber-bg);color:var(--amber)}.pill.dark{background:#edf1ed;border-color:#dfe5df;color:#5b6760}.micro{font-size:10px;color:#98a29c}.t-num{font-variant-numeric:tabular-nums}
+.story-hero{background:#22302c;color:#fff;border-radius:19px;padding:25px 31px;display:flex;justify-content:space-between;gap:30px;align-items:center;position:relative;overflow:hidden;min-height:164px;margin-bottom:19px}.story-hero:before{content:"";position:absolute;right:-95px;top:-130px;width:350px;height:350px;border-radius:50%;border:1px solid rgba(255,255,255,.13);box-shadow:0 0 0 38px rgba(255,255,255,.035),0 0 0 81px rgba(255,255,255,.025)}.story-hero:after{content:"✳";font-size:110px;line-height:1;color:rgba(241,159,125,.18);position:absolute;right:98px;bottom:-42px}.story-hero .kicker{font-size:10px;letter-spacing:2px;color:#f0ad9b;font-weight:780}.story-hero h2{font-size:27px;letter-spacing:-.5px;line-height:1.35;margin:12px 0 8px;font-weight:820}.story-hero p{font-size:12px;color:#b8c4bb;line-height:1.75}.hero-side{display:flex;align-items:center;gap:13px;z-index:1;flex-shrink:0}.hero-side .hero-symbol{font-size:39px;color:#ffd4c6;font-weight:270}.hero-side div{font-size:11px;color:#b9c8bf;line-height:1.8}.hero-side strong{display:block;font-size:14px;color:#fff;font-weight:760}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-bottom:18px}.metric{padding:19px 20px}.metric .kpi-name{font-size:11px;color:#89958d;display:flex;gap:6px;align-items:center}.metric .kpi-value{font-size:28px;font-weight:830;letter-spacing:-1px;margin:9px 0 6px}.metric .kpi-foot{font-size:10px;color:#a2aaa4;line-height:1.5}.metric .kpi-accent{color:#d95d47}.main-grid{display:grid;grid-template-columns:minmax(0,1.13fr) minmax(350px,.87fr);gap:17px;align-items:start}.semantic-cloud{padding:5px 19px 18px;display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;min-height:292px}.issue-tile{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;text-align:left;border:1px solid transparent;border-radius:14px;padding:17px 19px;min-height:110px;flex:1 1 42%;background:#f8f6f4;position:relative;transition:.16s;overflow:hidden}.issue-tile:hover,.issue-tile.selected{border-color:#e7b8aa;box-shadow:inset 0 0 0 1px #f8e4dd;transform:translateY(-2px)}.issue-tile::after{content:'↗';position:absolute;right:14px;top:12px;font-size:14px;color:#b8b0a7}.issue-tile:first-child{flex-basis:54%;min-height:147px}.issue-tile:nth-child(2){flex-basis:38%}.issue-tile:nth-child(3){flex-basis:48%;background:#f5f5f9}.issue-tile:nth-child(4){flex-basis:48%;background:#f2f7f5}.issue-tile:last-child{flex-basis:100%;min-height:96px;background:#f4f7f0}.issue-tile .tile-count{font-size:10px;color:#a17f72;font-weight:720;letter-spacing:.3px}.issue-tile .tile-label{font-size:19px;font-weight:840;letter-spacing:-.4px;margin:7px 0}.issue-tile:first-child .tile-label{font-size:22px}.issue-tile .tile-footer{font-size:10px;color:#8d938d}.segmented{display:flex;align-items:center;gap:2px;background:#f4f6f3;border-radius:8px;padding:3px}.segmented button{border:0;background:transparent;color:#9aa39d;border-radius:6px;font-size:10px;font-weight:700;padding:7px 9px;white-space:nowrap}.segmented button.active{background:white;color:#343f37;box-shadow:0 1px 5px #1c291a12}.keyword-cloud{display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start;padding:13px 20px 25px;min-height:292px;align-items:center}.keyword{background:#f7f8f7;border:1px solid #e9ebe7;padding:9px 15px;border-radius:9px;color:#8d948f}.keyword:nth-child(5n+1){font-size:20px;font-weight:750;color:#6d7770}.keyword:nth-child(4n+2){font-size:15px;color:#946f62}.keyword:nth-child(3n+2){font-weight:740;font-size:17px}.keyword-key{padding:10px 20px 22px;color:#b2b8b1;font-size:11px;line-height:1.6}.ranked-row{display:grid;grid-template-columns:23px minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 1px;border-bottom:1px solid #f2f3f1;cursor:pointer;border-radius:7px}.ranked-row:last-child{border-bottom:0}.ranked-row:hover{background:#fafafa}.ranked-row.chosen .rank-label{color:var(--accent)}.rank-idx{font-size:11px;color:#b2bbb5;font-variant-numeric:tabular-nums}.rank-name{font-size:12px;font-weight:740}.rank-meta{font-size:10px;color:#9aa39d;margin-top:5px}.rank-num{font-size:12px;font-weight:780;color:#515e54;text-align:right}.small-bar-track{height:5px;border-radius:5px;background:#f1f2ef;margin-top:9px;width:100%;overflow:hidden}.small-bar{height:100%;border-radius:5px;background:#e6a394}.ranked-row:nth-child(3) .small-bar{background:#bbc0cd}.ranked-row:nth-child(4) .small-bar{background:#b1c8c3}.ranked-row:nth-child(5) .small-bar{background:#b7c5aa}. insight-strip{color:red}.insight-strip{display:flex;align-items:flex-start;gap:13px;padding:17px 19px;background:#fff8f5;border:1px solid #f5e3da;border-radius:13px;margin-top:16px;line-height:1.7}.insight-icon{width:24px;height:24px;border-radius:8px;flex-shrink:0;background:#fbe0d7;color:var(--accent);display:grid;place-items:center;font-size:14px;font-weight:800}.insight-strip strong{font-size:12px;color:#ab4a37}.insight-strip p{font-size:11px;color:#a36c5a;margin-top:3px}.section-foot{margin-top:17px;display:flex;justify-content:space-between;align-items:center;gap:12px}.section-foot .hint{font-size:11px;color:#9ba49e;line-height:1.6}.next-band{background:#fff;border:1px solid var(--line);padding:17px 20px;border-radius:14px;display:flex;align-items:center;justify-content:space-between;margin-top:19px;gap:12px}.next-band p{font-size:11px;color:#8e9a92;margin-top:4px}.next-band strong{font-size:13px}
+.step-grid{display:grid;grid-template-columns: minmax(240px,.82fr) minmax(0,1.18fr);gap:17px;align-items:start}.cohort-list{display:grid;gap:9px;padding:3px 17px 17px}.cohort-card{width:100%;padding:15px;text-align:left;border:1px solid #e9ede8;background:#fff;border-radius:12px;transition:.16s}.cohort-card:hover{border-color:#eab7a7}.cohort-card.selected{border:1px solid #e9a595;background:#fff8f5;box-shadow:0 0 0 2px #fff0ec}.cohort-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px}.cohort-name{font-weight:770;font-size:12px}.cohort-desc{color:#9ba59e;font-size:11px;margin-top:6px;line-height:1.6}.cohort-facts{display:flex;gap:13px;flex-wrap:wrap;color:#718078;font-size:10px;margin-top:10px}.cohort-facts b{color:#c45c47}.cohort-card .selected-check{width:15px;height:15px;border:1px solid #e5d9d1;border-radius:50%;display:grid;place-items:center;color:transparent}.cohort-card.selected .selected-check{background:var(--accent);border-color:var(--accent);color:white}.evidence-chain{display:grid;grid-template-columns:1fr 24px 1fr;gap:10px;align-items:stretch;padding:5px 18px 20px}.chain-block{background:#f8f9f7;border:1px solid #edf0ec;border-radius:12px;padding:16px;min-height:172px}.chain-block .chain-label{font-size:10px;color:#94a19a;letter-spacing:.4px}.chain-block h3{font-size:14px;font-weight:780;margin:10px 0}.chain-block p{color:#77837a;line-height:1.8;font-size:11px}.chain-block .quote{font-size:12px;color:#455449;margin-top:12px;border-left:2px solid var(--accent);padding-left:10px;line-height:1.7;font-weight:580}.chain-arrow{display:grid;place-items:center;color:#e89b88;font-size:18px}.chain-small-data{display:flex;gap:12px;margin-top:11px;align-items:baseline;flex-wrap:wrap}.chain-small-data b{font-size:17px;letter-spacing:-.5px}.chain-small-data span{font-size:10px;color:#91a095}.search-toggle-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #e5ece4;background:#f8faf7;padding:15px 17px;border-radius:11px;margin:0 18px 17px}.search-toggle-row h4{font-size:12px}.search-toggle-row p{font-size:10px;color:#8e9a8f;margin-top:5px;line-height:1.6}.switch{border:0;background:#d6ded7;width:43px;height:25px;border-radius:20px;position:relative;flex-shrink:0;transition:.2s}.switch:after{content:'';position:absolute;left:4px;top:4px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0002;transition:.2s}.switch.on{background:var(--accent)}.switch.on:after{left:22px}.signal-row{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #eff0ed;padding:11px 0;font-size:11px}.signal-row:last-child{border-bottom:0}.signal-row .signal-cat{font-size:9px;color:#9fa8a0}.signal-row .signal-q{font-weight:640;margin-top:3px}.signal-row .signal-val{font-weight:770;color:#a8775b}.assumptions-list{display:grid;gap:10px;margin-top:8px}.hypothesis{display:grid;grid-template-columns:28px minmax(0,1fr) 48px;gap:10px;align-items:center;padding:12px 10px;border:1px solid #edf0ed;border-radius:10px;transition:.16s;cursor:pointer}.hypothesis:hover{background:#fafbf8}.hypothesis.active{background:#fff7f3;border-color:#ecc9bb}.hyp-rank{font-size:11px;color:#a4aaa4}.hypothesis strong{font-size:12px}.hypothesis p{font-size:10px;color:#91a197;margin-top:5px}.hyp-score{font-size:18px;color:#5c6d61;font-weight:820;text-align:center}.hyp-score span{display:block;font-size:9px;color:#abb4ad;font-weight:550}.match-score{border-radius:12px;border:1px solid #f0e1d5;background:#fffbf6;padding:16px;margin-top:14px}.match-score strong{font-size:12px;color:#775945}.match-score p{font-size:11px;color:#93816f;margin-top:7px;line-height:1.7}.match-score .match-warning{font-size:10px;color:#b18c6d;margin-top:9px}.spotlight{border-radius:14px;background:#25342f;color:#f8faf8;padding:19px 21px;display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:17px}.spotlight .title{font-size:13px;font-weight:770}.spotlight p{font-size:11px;color:#c3cfc7;line-height:1.75;margin-top:5px}.spotlight .button{flex-shrink:0}
+.lab-top{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(290px,.95fr);gap:17px;align-items:stretch;margin-bottom:17px}.solution-list{display:grid;gap:9px;padding:5px 19px 19px}.solution-card{display:flex;gap:11px;align-items:flex-start;text-align:left;padding:14px;border:1px solid #e9ede8;background:#fff;border-radius:11px}.solution-card:hover{border-color:#e6a99a}.solution-card.active{border-color:#eca490;background:#fff8f4;box-shadow:0 0 0 1px #f9e0d5}.solution-card .radio{width:16px;height:16px;border-radius:50%;border:1.5px solid #c9d1ca;flex-shrink:0;margin-top:3px;display:grid;place-items:center}.solution-card.active .radio{border-color:var(--accent)}.solution-card.active .radio:after{content:'';width:8px;height:8px;background:var(--accent);border-radius:50%}.solution-name{font-weight:780;font-size:12px}.solution-card .solution-tag{font-size:9px;margin-left:7px;color:#ba785f;background:#fff0e9;border-radius:4px;padding:3px 5px}.solution-card p{font-size:11px;color:#7b8880;line-height:1.7;margin-top:7px}.redteam-card{padding:22px;height:100%;position:relative;overflow:hidden;background:#24342f;color:#f3f8f3}.redteam-card::after{content:'✳';position:absolute;right:-5px;top:-22px;font-size:116px;opacity:.06}.redteam-card .eyebrow{color:#eba08e}.redteam-card h3{font-size:19px;line-height:1.4;letter-spacing:-.4px;margin:9px 0 9px}.redteam-card>p{font-size:11px;color:#b6c7bd;line-height:1.7}.red-list{display:grid;gap:10px;margin-top:17px}.red-item{display:flex;gap:9px;align-items:flex-start;border:1px solid #42544a;background:#2c3d36;border-radius:10px;padding:11px}.red-item .alert{font-size:11px;color:#ffbf92;font-weight:850}.red-item div{font-size:11px;color:#d9e4dc;line-height:1.65}.red-bottom{margin-top:17px;font-size:10px;color:#a5c2b2;border-top:1px solid #44564b;padding-top:12px}.calculator{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:0;border-top:1px solid #eef0ec}.form-side{padding:18px 20px 23px;border-right:1px solid #edf0ec}.form-field{margin-bottom:16px}.form-field label{display:flex;justify-content:space-between;gap:6px;align-items:center;color:#718179;font-size:11px;font-weight:670;margin-bottom:8px}.form-field label b{font-variant-numeric:tabular-nums;color:#2e3c32;font-size:13px}.form-field input[type=range]{width:100%;accent-color:var(--accent);height:5px;cursor:pointer}.form-field input[type=number]{width:100%;padding:9px 12px;border:1px solid #e0e6df;border-radius:8px;font-size:13px;color:#2e3c32}.field-hint{color:#a1aaa3;font-size:10px;margin-top:5px;line-height:1.6}.calculator-results{padding:20px 22px 23px}.result-hero{background:#f4f8f3;border:1px solid #e5eee5;border-radius:13px;padding:19px;margin-bottom:14px}.result-hero.negative{background:#fff4f1;border-color:#f4dcd5}.result-hero .result-kicker{font-size:11px;color:#6c8070}.result-hero .result-num{font-size:31px;font-weight:830;letter-spacing:-.8px;margin:7px 0 5px;color:#307d62}.result-hero.negative .result-num{color:#ce624d}.result-hero p{font-size:10px;color:#8d9b8f;line-height:1.7}.calc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.calc-stat{border:1px solid #eff1ee;border-radius:11px;padding:14px 12px}.calc-stat .stat-label{font-size:10px;color:#9da69e;line-height:1.5}.calc-stat .stat-value{font-size:20px;font-weight:810;margin-top:7px}.calc-stat .stat-note{font-size:10px;color:#a9b2a9;margin-top:5px;line-height:1.4}.calc-formula{margin-top:13px;border-top:1px solid #e9ede8;padding-top:13px;font-size:10px;color:#97a198;line-height:1.8}.experiment-card{background:#fff;border:1px solid #e7ece5;border-radius:15px;padding:23px;margin-top:17px}.experiment-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:18px}.exp-col{position:relative;padding-left:15px;border-left:2px solid #e9ede8}.exp-col:first-child{border-color:#ecc0b4}.exp-col:nth-child(2){border-color:#d9c397}.exp-col:nth-child(3){border-color:#b8d8bc}.exp-index{font-size:10px;color:#acb6ad;letter-spacing:.5px}.exp-col h4{font-size:12px;margin:7px 0;font-weight:770}.exp-col p{font-size:11px;color:#79877e;line-height:1.8}.exp-actions{display:flex;justify-content:flex-end;margin-top:20px;gap:9px;flex-wrap:wrap}.validation-banner{padding:13px 17px;border-radius:11px;background:#fbfaf6;border:1px solid #eae7db;color:#85735e;font-size:11px;line-height:1.7;margin-top:17px}.choice-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:15px}.choice-row .choice-text{font-size:11px;color:#8c978f;line-height:1.6}
+.drawer-backdrop{position:fixed;inset:0;background:rgba(26,36,30,.25);z-index:55;animation:fade .16s}.drawer{position:fixed;right:0;top:0;bottom:0;width:min(510px,100vw);background:#fff;box-shadow:-12px 0 50px #24332720;z-index:56;overflow-y:auto;animation:slide .2s}.drawer-top{padding:25px 28px;border-bottom:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:20px}.drawer-top h2{font-size:23px;margin:6px 0}.drawer-top p{font-size:12px;color:#8a958e;line-height:1.65}.close-btn{font-size:25px;color:#93a096;border:0;background:#f4f6f3;border-radius:8px;width:32px;height:32px}.drawer-body{padding:23px 28px 40px}.drawer-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:17px}.drawer-facts>div{background:#f8f9f7;border:1px solid #edf0ed;padding:13px 10px;border-radius:9px}.drawer-facts strong{font-size:19px}.drawer-facts p{font-size:10px;color:#8c9a91;margin-top:5px}.drawer-explain{font-size:11px;line-height:1.8;color:#75837b;padding:14px;border-radius:11px;border-left:3px solid #ebb6a6;background:#fcf8f5}.drawer-filters{display:flex;gap:7px;margin:17px 0}.filter-button{border:1px solid #e5eae4;background:#fff;border-radius:20px;font-size:10px;padding:7px 12px;color:#7c8b80}.filter-button.active{background:#24342f;border-color:#24342f;color:#fff}.comment-list{display:grid;gap:9px}.comment{border:1px solid #edf0eb;border-radius:11px;padding:12px 14px}.comment .comment-top{display:flex;justify-content:space-between;gap:10px;color:#9aa69d;font-size:10px}.comment p{font-size:12px;line-height:1.8;color:#34443a;margin:8px 0}.comment-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;color:#9daa9d}.comment-badge{font-size:9px;color:#b65c4e;background:#fff0eb;border-radius:5px;padding:4px 6px}.drawer-more{width:100%;margin-top:12px}
+.modal{border:0;border-radius:17px;box-shadow:0 26px 90px #101d192b;max-width:510px;width:calc(100% - 30px);padding:0;color:var(--ink)}.modal::backdrop{background:#1f2d27a0}.modal-inner{padding:29px 33px 28px;position:relative}.modal h2{font-size:22px;margin:10px 0 18px}.modal p{color:#6b7970;line-height:1.9;font-size:12px;margin-bottom:12px}.modal ul{margin:5px 0 16px;padding-left:20px;font-size:12px;color:#6b7970;line-height:2}.modal-x{position:absolute;right:17px;top:13px;border:0;background:transparent;font-size:26px;color:#9ea9a0}.modal-ok{width:100%;margin-top:8px}#toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);background:#27382f;color:#fff;padding:12px 20px;border-radius:12px;font-size:12px;box-shadow:0 10px 35px #26372f35;opacity:0;pointer-events:none;z-index:100;transition:.2s;max-width:90vw;text-align:center}#toast.show{opacity:1;transform:translate(-50%,0)}@keyframes fade{from{opacity:0}to{opacity:1}}@keyframes slide{from{transform:translateX(25px);opacity:.8}to{transform:translateX(0);opacity:1}}
+@media(max-width:1250px){.app-shell{grid-template-columns:222px 1fr}.sidebar{padding-left:12px;padding-right:12px}.content{padding:23px 25px 50px}.main-grid{grid-template-columns:1fr 1fr;gap:13px}.step-grid{grid-template-columns:1fr 1.12fr}.hero-side{display:none}.page-heading h1{font-size:27px}}
+@media(max-width:980px){.app-shell{grid-template-columns:1fr}.sidebar{position:fixed;left:0;transform:translateX(-105%);transition:.2s;box-shadow:10px 0 40px #14221d20}.sidebar.mobile-open{transform:translateX(0)}.mobile-menu{display:grid}.topbar{padding:0 22px}.content{padding:22px}.main-grid,.step-grid,.lab-top{grid-template-columns:1fr}.metric-grid{grid-template-columns:repeat(2,1fr)}.evidence-chain{grid-template-columns:1fr 25px 1fr}.story-hero{min-height:140px}}
+@media(max-width:620px){.content{padding:18px 13px 40px}.topbar{height:57px;padding:0 14px}.topbar-right .version,.topbar-divider{display:none}.demo-notice{font-size:10px;align-items:flex-start;margin-bottom:22px}.demo-notice button{display:none}.page-heading{display:block}.page-heading h1{font-size:24px}.page-actions{margin-top:17px}.page-actions .button{flex:1}.metric{padding:15px}.metric .kpi-value{font-size:24px}.story-hero{padding:24px 20px}.story-hero h2{font-size:22px}.semantic-cloud{padding:4px 12px 14px}.issue-tile{padding:14px 12px;min-height:100px}.issue-tile .tile-label{font-size:15px}.issue-tile:first-child .tile-label{font-size:18px}.panel-head{padding:17px 15px 11px}.panel-body{padding:0 15px 17px}.next-band{display:block}.next-band .button{margin-top:15px;width:100%}.evidence-chain{grid-template-columns:1fr}.chain-arrow{transform:rotate(90deg);height:20px}.spotlight{display:block}.spotlight .button{margin-top:12px;width:100%}.calculator{grid-template-columns:1fr}.form-side{border-right:0;border-bottom:1px solid var(--line)}.calc-stats{grid-template-columns:1fr 1fr}.experiment-grid{grid-template-columns:1fr;gap:14px}.lab-top{grid-template-columns:1fr}.topbar-left{gap:8px}.main-footer{padding:15px;font-size:9px;display:block}.main-footer span{display:block;margin-bottom:3px}.drawer-top,.drawer-body{padding-left:17px;padding-right:17px}.drawer-facts{gap:5px}.drawer-facts>div{padding:12px 8px}.drawer-facts strong{font-size:16px}}
+
+.decision-shift{display:flex;align-items:flex-start;gap:10px;margin-top:14px;padding:13px 14px;border:1px solid #cfe5d8;border-radius:10px;background:#f0f8f2}.decision-symbol{font-size:16px;color:#41816b}.decision-shift strong{font-size:11px;color:#38725d}.decision-shift p{font-size:10px;color:#7a9883;line-height:1.75;margin-top:5px}
+
+/* v0.9 · 更显性的产品叙事、交互提示与商业决策链 */
+.product-kicker{font-size:30px;font-weight:850;letter-spacing:-1px;color:#253a2f;line-height:1.25;margin:4px 0 15px}.product-kicker span{font-size:11px;letter-spacing:1px;color:#ba8a7d;font-weight:680;vertical-align:middle;white-space:nowrap}.step-eyebrow{display:inline-flex;padding:7px 11px;border-radius:7px;background:#fff0eb;letter-spacing:.8px}.page-heading .step-one-heading{font-size:20px;margin:12px 0 8px;color:#3e5146;font-weight:720}.methodology-cta{background:#263b30;color:#fff;border-color:#263b30;padding:12px 17px;font-size:12px}.methodology-cta:hover{color:#fff;background:#354d3e;border-color:#354d3e}
+.flow-track{display:flex;align-items:center;gap:9px;padding:9px 11px;background:#fff;border:1px solid #e8ece6;border-radius:11px;max-width:max-content;margin:-11px 0 24px}.flow-chip{background:transparent;border:0;padding:9px 11px;border-radius:7px;color:#85918a;font-size:11px;font-weight:740;white-space:nowrap}.flow-chip:hover{color:#c65843;background:#fff5f1}.flow-chip.current{background:#ffede6;color:#c85540}.flow-join{color:#aeb7b0;font-size:14px}
+.case-intro{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:19px 24px;border:1px solid #e7e9df;border-left:4px solid #d6a46a;border-radius:12px;background:#fffdfa;margin-bottom:20px}.case-intro-label{display:block;font-size:10px;font-weight:780;color:#b17e44;letter-spacing:.35px}.case-intro h3{font-size:15px;line-height:1.45;margin:7px 0}.case-intro p{max-width:790px;line-height:1.65;font-size:12px;color:#7a877d}.case-intro .button{flex-shrink:0}
+.panel-info{width:auto;height:auto;border:1px solid #e9cdc3;padding:8px 11px;border-radius:8px;white-space:nowrap;background:#fff6f2;color:#b34d3c;font-size:10px;font-weight:760}.panel-info span{font-size:13px;vertical-align:-1px}.panel-info:hover{background:#fbe9e2;border-color:#dba99a;color:#973a29}.panel-head{align-items:flex-start}.panel-head > div:first-child{min-width:0}.panel-head .panel-info{flex-shrink:0}
+.wordcloud-control{display:flex;align-items:center;gap:13px;padding:1px 18px 18px;flex-wrap:wrap}.wordcloud-control span{font-size:10px;color:#9aa59b}.wordcloud-real{display:flex;min-height:0;margin:0 18px 12px;padding:24px;align-items:center;justify-content:center;gap:13px 19px;background:#fbfbf9;border:1px dashed #dee8de;border-radius:14px}.wordcloud-real .keyword{display:inline-block;line-height:1.4;font-weight:760;color:#627e73}.wordcloud-real .keyword:nth-child(4n+1){color:#bd725b}.wordcloud-real .keyword:nth-child(3n){color:#517963}
+.next-primary{font-size:13px;padding:14px 20px;box-shadow:0 8px 19px #e954402a}.next-band{border:1px solid #f0d8cf;background:#fff7f3}.next-band strong{font-size:14px}.next-band p{font-size:12px}
+.source-chip{display:inline-flex;font-size:10px;font-weight:730;color:#9c6c51;background:#fff1e8;padding:6px 10px;border-radius:7px;margin-bottom:11px}.hypothesis-selector{margin-top:18px}.hypothesis-options{padding:2px 19px 14px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.hypothesis-option{display:flex;align-items:flex-start;flex-direction:column;text-align:left;border-radius:11px;background:#fafbf9;border:1px solid #e5e9e3;padding:13px;min-height:112px;gap:7px}.hypothesis-option.active{background:#fff2eb;border-color:#e6a38f;box-shadow:0 0 0 1px #f5d8ce}.hypothesis-option small{color:#bd765d}.hypothesis-option strong{font-size:12px;line-height:1.5}.hypothesis-option span{color:#8a9990;font-size:10px}.hypothesis-bridge{margin:0 19px 19px;padding:13px 15px;background:#f3f7f4;border:1px solid #dfece2;border-radius:10px}.hypothesis-bridge strong{font-size:12px;color:#34765f}.hypothesis-bridge p{font-size:11px;color:#74877b;margin-top:6px;line-height:1.7}
+.calc-howto{display:flex;align-items:center;gap:10px;background:#fbfaf5;border-top:1px solid #eef0eb;padding:16px 21px;justify-content:space-around}.calc-howto div{font-size:11px;color:#536657;font-weight:630;line-height:1.5}.calc-howto div b{display:inline-grid;place-items:center;width:22px;height:22px;margin-right:6px;background:#e5f0e7;color:#3d795d;border-radius:50%}.calc-howto>span{color:#b3bcb1}.form-helper{border:1px solid #e5ecdd;background:#f9fcf7;border-radius:9px;padding:12px;margin-bottom:18px}.form-helper strong{font-size:12px;color:#367b5e}.form-helper p{font-size:11px;line-height:1.7;color:#819282;margin-top:5px}
+.debate-button{width:100%;margin-top:17px;background:#f8e3d5;color:#4c392f;border-color:#f8e3d5;white-space:normal;line-height:1.5}.debate-button:hover{background:#ffe8dc;border-color:#ffe8dc}.debate-panel{margin:18px 0}.debate-cards{padding:6px 19px 17px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}.debate-voice{border:1px solid #e6eae5;border-radius:12px;padding:15px;display:flex;flex-direction:column;gap:12px;background:#fafbf9}.debate-voice.challenge{background:#fff9f5;border-color:#f0e3db}.debate-head{display:flex;align-items:center;gap:9px}.debate-avatar{width:34px;height:34px;border-radius:9px;background:#e3f0e5;color:#3c7960;display:grid;place-items:center;font-weight:770}.debate-voice.challenge .debate-avatar{background:#f7e7df;color:#bc7359}.debate-head strong,.debate-head small{display:block}.debate-head strong{font-size:12px}.debate-head small{font-size:10px;color:#8a9a8f;margin-top:4px}.debate-voice p{font-size:11px;line-height:1.75;color:#61736a;flex:1}.debate-voice a{font-size:10px;color:#ad674a;text-decoration:underline;text-underline-offset:3px;line-height:1.6}.debate-action,.debate-summary{margin:0 19px 18px;background:#eef5ef;border:1px solid #dce8df;border-radius:11px;padding:16px 20px}.debate-action{display:flex;justify-content:space-between;align-items:center;gap:18px}.debate-action p,.debate-summary p{color:#597366;line-height:1.8;font-size:12px}.debate-summary strong{font-size:14px;color:#2f775c}.debate-summary p{margin:9px 0}.debate-summary small{color:#93a497;font-size:10px}
+.visual-decision-card{padding:20px;border:1px solid #e4eae3;background:#fbfcfa;border-radius:13px}.visual-decision-card h3{font-size:16px;margin:10px 0 16px}.visual-decision-card p{font-size:12px;margin-top:10px}.card-data-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.card-data-row>div{background:#fff;padding:11px;border-radius:8px}.card-data-row small,.card-data-row strong{display:block}.card-data-row small{color:#98a398;font-size:10px}.card-data-row strong{font-size:13px;margin-top:7px}.card-outcomes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.card-outcomes>div{background:#f1f7f2;border-radius:8px;padding:11px}.card-outcomes span,.card-outcomes b{display:block}.card-outcomes span{font-size:10px;color:#8a9f8d}.card-outcomes b{font-size:19px;color:#388566;margin-top:5px}.card-disclaimer,.modal-tiny{font-size:10px;color:#9aa79d;line-height:1.7}.card-export-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.card-export-actions .button{font-size:11px;white-space:normal}.modal{max-width:630px}.modal-inner{max-height:min(88vh,950px);overflow:auto}.modal h2{margin-bottom:13px}.modal p{font-size:12px}.modal p strong{color:#334d3c}
+.mobile-nav-close{display:none}.mobile-nav-backdrop[hidden]{display:none!important}.mobile-nav-backdrop{position:fixed;inset:0;background:rgba(17,29,22,.38);border:0;z-index:29;display:none;cursor:pointer}
+@media(max-width:980px){.mobile-nav-backdrop:not([hidden]){display:block}.mobile-nav-close{display:block;border:0;background:#faf0ed;color:#b44d39;padding:8px 12px;border-radius:7px;margin:-13px 0 18px auto}.sidebar.mobile-open{z-index:35}}
+@media(max-width:900px){.hypothesis-options{grid-template-columns:repeat(2,minmax(0,1fr))}.debate-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.case-intro{align-items:flex-start;flex-direction:column}}
+@media(max-width:620px){.flow-track{gap:2px;padding:6px;width:100%;justify-content:space-between}.flow-chip{padding:8px 4px;font-size:10px}.flow-join{font-size:11px}.product-kicker{font-size:25px}.product-kicker span{display:block;font-size:9px;margin-top:6px}.step-one-heading{font-size:17px!important}.page-actions .methodology-cta{max-width:max-content}.debate-cards{grid-template-columns:1fr}.hypothesis-options{grid-template-columns:repeat(2,minmax(0,1fr));padding:3px 13px 12px}.hypothesis-option{min-height:105px;padding:10px}.hypothesis-bridge{margin:0 13px 15px}.calc-howto{display:grid;grid-template-columns:1fr;gap:9px}.calc-howto>span{display:none}.case-intro{padding:15px}.case-intro .button{white-space:normal}.card-export-actions{display:grid;grid-template-columns:1fr}.modal-inner{padding:23px}.panel-info{font-size:10px}.panel-head{flex-wrap:wrap}.debate-action{display:block}.debate-action .button{margin-top:9px}.page-heading{margin-bottom:20px}}
+/* v0.9.1 · 首页双入口与商业红队说明增强（其他模块不变） */
+.story-hero .story-main{position:relative;z-index:1;min-width:0;flex:1}
+.story-hero .hero-method-button{margin-top:17px;background:#f7ede6;border:1px solid #f7ede6;color:#32473b;white-space:normal;text-align:left;font-weight:780;padding:11px 16px;box-shadow:0 3px 10px #00000018}
+.story-hero .hero-method-button:hover{background:white;border-color:white;color:#263b30}
+.case-intro>div{flex:1;min-width:0}
+.case-intro .case-story-button{margin-top:14px;color:#865632;border-color:#ead7c1;background:#fff7ed;padding:10px 15px}
+.case-intro .case-story-button:hover{background:#fff0de;border-color:#c6a480}
+.redteam-head{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:11px}
+.redteam-card .panel-info{border-color:#608070;color:#ecfff2;background:#365749;box-shadow:0 0 0 1px #4b6a5b55}
+.redteam-card .panel-info:hover{background:#476f5b;color:white;border-color:#88a694}
+.debate-architecture{margin:0 19px 17px;display:grid;grid-template-columns:1fr 1.2fr;gap:12px;padding:0}
+.debate-architecture>div:not(.debate-disclaimer){background:#f2f7f1;border:1px solid #e0ebe0;border-radius:12px;padding:16px 17px}
+.debate-architecture strong{color:#3b6950;font-size:12px;display:block;margin-bottom:7px}
+.debate-architecture p{font-size:11px;line-height:1.85;color:#5b6c62}
+.debate-architecture .debate-disclaimer{grid-column:1/-1;color:#9aa59e;font-size:10px;line-height:1.6;padding:0 4px}
+@media(max-width:620px){.story-hero .hero-method-button,.case-intro .case-story-button{width:100%;justify-content:center}.redteam-head{align-items:flex-start}.redteam-head .panel-info{font-size:10px;white-space:nowrap}.debate-architecture{grid-template-columns:1fr;margin:0 13px 15px}}
+
+/* v0.9.2 · visual system / hierarchy refresh · no business logic changes */
+:root{
+ --bg:#f7f8fa;--paper:#ffffff;--sidebar:#ffffff;--ink:#25303a;
+ --muted:#65717b;--light:#919ba3;--line:#e8ebef;--accent:#ef514e;
+ --accent-weak:#fff0ef;--green:#287b76;--green-bg:#eaf7f4;
+ --amber:#a47a43;--amber-bg:#fff7e9;
+ --shadow:0 9px 27px rgba(31,44,55,.036);--radius:16px;
+}
+html{background:var(--bg);color:var(--ink)}
+body{background:var(--bg)}
+.app-shell{grid-template-columns:246px minmax(0,1fr)}
+.sidebar{box-shadow:4px 0 24px rgba(27,36,44,.015)}
+.topbar{background:#fff;border-bottom-color:#edf0f2}
+.content{padding-top:23px}
+.demo-notice{background:#f8fafb;border:1px solid #e7ebef;color:#66737d;border-radius:11px;margin-bottom:24px;box-shadow:none}
+.demo-notice strong{color:#3c4854}.notice-icon{color:var(--accent)}
+.demo-notice button{color:#697684;font-weight:700;text-decoration:none;border-bottom:1px solid #d1d9df}
+.panel,.metric{border-color:#e9edf0;box-shadow:var(--shadow)}
+.panel-title{color:#25323e;font-size:15px}
+.panel-sub{color:#77838e;font-size:11.5px}
+.panel-head{padding-top:20px}
+.pill.orange{color:#d44f4a;background:#fff2f1;border-color:#fae0de}
+.pill.green{color:#276d6a;background:#edf7f5;border-color:#daeeea}
+.pill.amber{color:#987447;background:#fff7ec;border-color:#f3e8d6}
+.eyebrow{color:#dd5751}
+.button{border-radius:9px;border-color:#e3e8ed;color:#43515d;font-weight:720}
+.button:hover{border-color:#ccd5de;box-shadow:0 4px 14px rgba(40,49,60,.045)}
+.button.accent{box-shadow:0 6px 14px rgba(239,81,78,.12)}
+.button.primary{background:#28343e;border-color:#28343e}
+.panel-info{font-size:11px;border-color:#f5d9d8;color:#b54b48;background:#fff5f4}
+.panel-info:hover{background:#ffe9e7;border-color:#f0c8c5;color:#9f3632}
+.brand-mark span{border-radius:2.5px}
+.brand-title{color:#252e38}
+.brand-sub{color:#acb2b9}
+.sidebar-section-label{color:#89949f}
+.nav-link{font-size:12.5px;color:#737f8a}
+.nav-link.active{background:#fff0ef;color:#d34844}
+.nav-link.active .nav-arrow,.nav-link.active .nav-index{color:#d34844}
+.nav-link:hover{background:#f7f8fa}
+.guided-tour{margin:19px 5px 0;width:calc(100% - 10px);display:flex;align-items:center;gap:10px;min-height:69px;text-align:left;border:1px solid #f6d4d1;border-radius:12px;background:linear-gradient(120deg,#fff5f3,#fffaf9);padding:11px 12px;box-shadow:0 5px 14px rgba(229,105,91,.052);transition:transform .16s,background .16s}
+.guided-tour:hover{transform:translateY(-1px);background:#ffefed;border-color:#eebdb8}
+.guided-tour-icon{display:grid;place-items:center;width:33px;height:33px;flex:none;background:#fce0dd;border-radius:10px;color:#cb4b47;font-size:21px}
+.guided-tour strong,.guided-tour small{display:block}
+.guided-tour strong{font-size:13px;color:#b63f3c;font-weight:800}
+.guided-tour small{font-size:10px;color:#a17875;margin-top:5px}
+.guided-tour-arrow{margin-left:auto;color:#cc6864;font-size:18px}
+.side-divider{margin:22px 7px}
+.case-side-card{background:#fafbfc;border:1px solid #eef0f3;box-shadow:none}
+.case-icon{background:#f0f2f4}
+.case-tag{color:#929ba4}
+.sidebar-bottom{margin-top:auto}
+.side-foot{color:#9da8b0;margin-top:18px}
+.product-masthead{display:flex;align-items:center;gap:18px;padding:4px 2px 21px;position:relative}
+.masthead-emblem{display:grid;grid-template-columns:repeat(2,10px);gap:5px;transform:rotate(-12deg);flex-shrink:0;margin:0 6px 0 2px}
+.masthead-emblem span{width:10px;height:10px;background:var(--accent);border-radius:3px}
+.masthead-emblem span:nth-child(2){opacity:.35}
+.masthead-emblem span:nth-child(3){opacity:.7}
+.masthead-eyebrow{display:block;font-size:10px;letter-spacing:1.45px;color:#9aa3ae;font-weight:800;margin-bottom:5px}
+.product-masthead h1{font-size:35px;line-height:1.15;letter-spacing:-1.3px;font-weight:875;color:#25303b}
+.masthead-period{color:var(--accent)}
+.product-masthead p{font-size:12px;line-height:1.6;color:#667683;margin-top:7px}
+.masthead-right{font-size:10px;color:#a4afb8;font-weight:780;letter-spacing:1.15px;margin-left:auto;white-space:nowrap;align-self:flex-end;padding-bottom:8px}
+.masthead-right b{color:var(--accent)}
+.flow-track{max-width:none;width:100%;margin:0 0 24px;padding:7px;background:#fff;border-color:#e8ebef;border-radius:13px;box-shadow:0 4px 16px rgba(30,43,60,.022)}
+.flow-chip{font-size:12px;flex:1;letter-spacing:.12px;color:#7c8893;padding:12px 8px;border-radius:9px}
+.flow-chip:hover{color:#cb5350;background:#fff4f3}
+.flow-chip.current{background:#ffefed;color:#c9403d;box-shadow:inset 0 0 0 1px #ffe4e2}
+.flow-join{color:#b9c0c7}
+.page-heading{margin-bottom:21px;align-items:center}
+.step-title-wrap{min-width:0;flex:1}
+.step-eyebrow{display:inline-flex;padding:6px 10px;border-radius:7px;background:#f4f6f8;color:#687884;letter-spacing:.6px}
+.page-heading h1{margin:9px 0 5px;color:#2c3945;font-size:23px;letter-spacing:-.55px}
+.page-heading p{color:#7b8993;font-size:12px;line-height:1.65}
+.page-actions .button{font-size:11px}
+.story-hero{background:#28323b;border-radius:16px;padding:27px 30px;box-shadow:0 10px 30px rgba(38,51,64,.055)}
+.story-hero .kicker{color:#ffbcb5}
+.story-hero p{color:#c8d1d9}
+.story-hero .hero-method-button{background:#fdf5f3;color:#313c46;border-color:#fdf5f3;box-shadow:none}
+.story-hero .hero-method-button:hover{background:white;border-color:white}
+.story-hero:after{color:rgba(255,133,124,.17)}
+.hero-side div{color:#c3cbd2}
+.case-intro{border-color:#ebedf0;border-left:3px solid #e9aba5;background:#fff;box-shadow:var(--shadow);border-radius:15px;padding:21px 25px}
+.case-intro-label{color:#bd7271}
+.case-intro h3{color:#33414c}
+.case-intro p{color:#7b8993}
+.case-intro .case-story-button{color:#a44844;background:#fff5f4;border-color:#f3dedc}
+.case-intro .case-story-button:hover{background:#ffebe9;border-color:#eebbb7}
+.metric .kpi-name{color:#7b8791}.metric .kpi-value{color:#283540}.metric .kpi-accent{color:#ea514d}
+.metric .kpi-foot{color:#939da6}
+.issue-tile{background:#f7f8fa;border-color:#f1f2f4}
+.issue-tile:nth-child(2){background:#f9f7f6}
+.issue-tile:nth-child(3){background:#f7f7fa}
+.issue-tile:nth-child(4){background:#f3f8f8}
+.issue-tile:nth-child(5){background:#f8f8f5}
+.issue-tile.selected{background:#fff5f4;border-color:#efb8b4;box-shadow:inset 0 0 0 1px #fbe4e2}
+.small-bar{background:#f08e87}
+.insight-strip{background:#fff7f4;border-color:#fae6e1}
+.next-band{background:#fff5f3;border-color:#f5ded9;border-radius:13px}
+.next-primary{box-shadow:0 6px 18px rgba(239,81,78,.16)}
+.cohort-card{border-color:#e9edf0;border-radius:12px}
+.cohort-card.selected{background:#fff6f5;border:1px solid #eca9a4;box-shadow:0 0 0 1px #fbe4e1}
+.cohort-card-top{display:flex;align-items:center;gap:12px;justify-content:space-between;min-height:24px}
+.cohort-card .selected-check{width:20px;height:20px;min-width:20px;min-height:20px;line-height:1;border:1px solid #d9dee4;color:transparent;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;font-family:Arial,sans-serif;font-size:11px;font-weight:700;padding:0;flex:none;transform:none}
+.cohort-card.selected .selected-check{color:#fff;background:var(--accent);border-color:var(--accent)}
+.redteam-card{background:#2b343c;color:#fff}
+.redteam-card .eyebrow{color:#fcb2ad}
+.redteam-card>p,.red-bottom{color:#c0cad1}
+.redteam-card .panel-info{background:#414d56;border-color:#626f78;color:#fff4f1;box-shadow:none}
+.redteam-card .panel-info:hover{background:#4f5d67;border-color:#c6a09d}
+.debate-button{background:#fce4e0;color:#54404a;border-color:#fce4e0}
+.debate-button:hover{background:#ffe9e6;border-color:#ffe9e6}
+.debate-architecture>div:not(.debate-disclaimer){background:#f7f9fa;border-color:#edf0f2}
+.debate-architecture strong{color:#445965}
+.debate-architecture p{color:#6d7a85}
+.debate-voice{background:#f9fafb;border-color:#edf0f2}
+.debate-voice.challenge{background:#fff8f7;border-color:#f5e5e3}
+.debate-avatar{background:#e8f3f2;color:#307a75}
+.debate-voice.challenge .debate-avatar{background:#ffebe8;color:#c95d54}
+.debate-voice a{color:#bd5650;text-decoration-thickness:1px}
+.debate-voice a:hover{color:#a53432}
+.debate-voice a:focus-visible{outline-color:var(--accent)}
+.experiment-card{border-color:#eceef0}
+.hypothesis-option.active{background:#fff4f3;border-color:#eab2ad;box-shadow:0 0 0 1px #fbe7e4}
+.hypothesis-bridge{background:#f4f9f8;border-color:#e1eeeb}
+.hypothesis-bridge strong{color:#316d69}
+.calc-howto{background:#f8fafb;border-color:#eff0f2}
+.calc-howto div b{background:#e7f4f2;color:#287b74}
+.form-helper{background:#f6faf9;border-color:#e3efec}
+.form-helper strong{color:#276e69}
+.masthead-emblem,.brand-mark{user-select:none}
+@media(max-width:980px){
+ .app-shell{grid-template-columns:1fr}
+ .sidebar{box-shadow:12px 0 45px rgba(18,32,49,.17)}
+ .product-masthead{padding-bottom:18px}
+}
+@media(max-width:620px){
+ .content{padding:14px 14px 42px}
+ .demo-notice{margin-bottom:19px;padding:10px 11px}
+ .product-masthead{gap:11px;padding:2px 0 17px}
+ .product-masthead h1{font-size:29px}
+ .masthead-eyebrow{font-size:9px;letter-spacing:.7px}
+ .product-masthead p{font-size:11px;line-height:1.45}
+ .masthead-right{display:none}
+ .masthead-emblem{margin-right:4px;grid-template-columns:repeat(2,8px);gap:4px}
+ .masthead-emblem span{width:8px;height:8px;border-radius:2px}
+ .flow-track{gap:0;overflow:hidden;margin-bottom:19px}
+ .flow-chip{padding:11px 3px;font-size:10px;white-space:normal;line-height:1.4;min-width:0}
+ .flow-join{font-size:11px}
+ .page-heading h1{font-size:21px}
+ .page-heading p{font-size:11px}
+ .story-hero{padding:24px 21px}
+ .story-hero h2{font-size:23px}
+ .case-intro{padding:18px 16px}
+ .cohort-card .selected-check{width:19px;height:19px;min-width:19px}
+ .guided-tour{min-height:65px}
+}
+/* Final micro-alignment and dark-card contrast corrections. */
+.red-item{background:#36414a;border-color:#46515a}
+.red-item div{color:#e4eaef}
+.red-item .alert{color:#ffb8af}
+.red-bottom{color:#aebcc7}
+.spotlight{background:#2d3740;color:#fff}
+.spotlight p{color:#c7d0d7}
+.selected-check{vertical-align:middle}
+.search-toggle-row{border-color:#e8eeef;background:#f9fbfb}
+
+/* v0.9.3 · 强化匹配结论与联动解释；不改变分析公式和数据 */
+.fit-result{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-top:13px;padding:11px 12px;border-radius:11px;background:#fff2ef;border:1px solid #f4d6cf}
+.fit-result.fit-high{background:#fff0ee;border-color:#f5c7bd}
+.fit-result.fit-mid{background:#fff6ec;border-color:#f0dfc4}
+.fit-result.fit-low{background:#fff6e8;border-color:#e9d5b0}
+.fit-caption{display:block;font-size:10px;color:#896767;line-height:1.55;letter-spacing:.15px}
+.fit-number{display:block;font-size:31px;font-weight:850;color:#db5a50;letter-spacing:-1px;line-height:1.2;margin-top:3px;font-variant-numeric:tabular-nums}
+.fit-number small{font-size:13px;font-weight:680;color:#aa8b83;margin-left:2px}
+.fit-low .fit-number{color:#ae772d}.fit-level{font-size:10px;font-weight:750;white-space:nowrap;color:#b65549;background:#fff;padding:6px 9px;border-radius:30px}
+.fit-low .fit-level{color:#9b6b2c}
+.fit-explain{font-size:11px;line-height:1.7;color:#805f57;margin-top:9px;font-weight:580}
+.chain-insight{margin:11px 20px 5px;border-left:3px solid var(--accent);background:#fff9f7;padding:12px 15px;border-radius:0 10px 10px 0}
+.chain-insight>span{display:block;color:#cb6b61;font-size:10px;font-weight:760;margin-bottom:5px}
+.chain-insight strong{font-size:12px;line-height:1.6;color:#614b4a}
+.chain-insight p{font-size:10px;line-height:1.75;color:#978584;margin-top:5px}
+.match-summary{margin:0 0 15px;border-color:#efd7d1;background:#fff9f8}
+.summary-topline{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.summary-kicker{font-size:10px;color:#aa675f;font-weight:750}
+.summary-headline{display:block!important;font-size:15px!important;color:#533e40!important;margin-top:11px;line-height:1.5}
+.summary-rank{font-size:10px;color:#b87869;font-weight:680;white-space:nowrap;margin-left:5px}
+.summary-priority{font-size:11px;color:#84665d;margin-top:9px;line-height:1.7}
+.summary-priority b{color:#a8544b}
+.rate-comparison{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:9px;color:#627768;font-size:11px}
+.rate-comparison>b{font-size:14px;color:#2a6e5f}
+.rate-comparison small{padding:3px 7px;font-size:10px;border-radius:20px;background:#fff;color:#66776d;border:1px solid #dce6de}
+.result-hero.negative .rate-comparison>b{color:#ad594c}
+.case-scope-hint{font-size:11px!important;color:#89939e!important;background:#f6f8fa;border:1px solid #edf0f2;border-radius:10px;padding:10px 12px;margin-bottom:13px!important;line-height:1.7}
+@media(max-width:620px){.chain-insight{margin:10px 12px 4px;padding:10px 12px}.fit-result{align-items:flex-start}.fit-number{font-size:27px}.summary-headline{font-size:13px!important}.summary-rank{display:inline-block;margin-top:2px}}
+
+/* v0.9.4 | 精简假设摘要：突出研究群组、选中假设，把空间还给优先级列表 */
+.match-summary{padding:11px 14px;margin-bottom:12px}
+.summary-kicker{color:#9a625c;line-height:1.35}
+.summary-cohort{color:#393b3a;font-size:12px;font-weight:790}
+.match-summary .summary-headline{margin-top:6px;line-height:1.35;font-size:14px!important}
+.match-summary p{margin-top:5px;line-height:1.5}
+.match-summary .summary-priority{margin-top:6px;line-height:1.45}
+.match-summary .match-warning{margin-top:5px;line-height:1.45}
+@media(max-width:620px){.match-summary{padding:11px 12px}.match-summary .summary-headline{font-size:13px!important}.summary-cohort{font-size:11px}}
+
+</style>
+</head>
+<body>
+  <div class="app-shell" id="app">
+    <button type="button" id="mobileNavBackdrop" class="mobile-nav-backdrop" aria-label="关闭侧边栏" hidden></button>
+    <aside class="sidebar" id="sidebar">
+      <button type="button" id="closeMobileMenu" class="mobile-nav-close" aria-label="关闭导航">× 返回</button>
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+        <div><div class="brand-title">不买账实验室</div><div class="brand-sub">LOST DEMAND LAB</div></div>
+      </div>
+      <div class="sidebar-section-label">工作流 · WORKFLOW</div>
+      <nav class="side-nav" aria-label="工作流">
+        <button type="button" class="nav-link active" data-step="0"><span class="nav-index">01</span><span>购买阻力地图</span><span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-step="1"><span class="nav-index">02</span><span>沉默解码器</span><span class="nav-arrow">↗</span></button>
+        <button type="button" class="nav-link" data-step="2"><span class="nav-index">03</span><span>增长实验室</span><span class="nav-arrow">↗</span></button>
+      </nav>
+      <button class="guided-tour" type="button" id="tourBtn"><span class="guided-tour-icon">◎</span><span><strong>90 秒体验导览</strong><small>从发现问题到增长决策</small></span><span class="guided-tour-arrow">↗</span></button>
+      <div class="side-divider"></div>
+      <div class="sidebar-section-label">当前研究案例</div>
+      <div class="case-side-card">
+        <div class="case-icon">☕</div>
+        <div class="case-name">早八集杯计划</div>
+        <div class="case-caption">连锁咖啡 · 三杯赠周边</div>
+        <div class="case-divider"></div>
+        <span class="dot"></span><span class="case-tag">全合成演示数据</span>
+      </div>
+      <div class="sidebar-bottom">
+        <div class="side-foot">BUILT WITH AI <b>·</b> STATIC DEMO<br/>无后端 / 无实时模型 / 数据均为模拟</div>
+      </div>
+    </aside>
+
+    <div class="main-area">
+      <header class="topbar">
+        <div class="topbar-left"><button id="mobileMenu" class="mobile-menu icon-button" aria-label="打开导航" aria-expanded="false">☰</button><span class="crumb">产品原型</span><span class="crumb-sep">/</span><strong id="crumbCurrent">购买阻力地图</strong></div>
+        <div class="topbar-right"><span class="live-dot"></span><span>静态可交互演示</span><span class="topbar-divider"></span><span class="version">PREVIEW v0.9.5</span><button class="icon-button help-btn" id="aboutBtn" type="button" aria-label="关于数据">?</button></div>
+      </header>
+
+      <main class="content" id="mainContent">
+        <div class="demo-notice"><span class="notice-icon">✦</span><span><strong>场景演示</strong> · 所有评论、用户群组、搜索信号和转化数据均为合成样例；语义标签为开发期AI预处理结果，非实时模型推理或小红书真实后台数据。</span><button id="aboutDataLink" type="button">查看边界 →</button></div>
+        <div id="appContent" aria-live="polite"></div>
+      </main>
+      <footer class="main-footer"><span>LOST DEMAND LAB · 一个问题，一条证据链，一次可验证的决策</span><span>WORK-IN-PROGRESS · FOR RED CODEWORK</span></footer>
+    </div>
+  </div>
+
+  <dialog id="infoDialog" class="modal"><div class="modal-inner"><button class="modal-x" data-close-dialog aria-label="关闭">×</button><div class="eyebrow">PRODUCT NOTES</div><h2 id="modalTitle">设计说明</h2><div id="modalBody"></div><button class="button primary modal-ok" data-close-dialog>理解了</button></div></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script>
+/* 全部案例、评论和数值均为专门为演示生成的合成数据。非真实用户资料。 */
+const LAB_DATA = (() => {
+  const issues = [
+    {id:'coord', name:'凑单协调门槛',short:'凑单门槛', color:'#ec6e55', subtitle:'喜欢奖励，但单人需求与三杯门槛不匹配', category:'购买机制', trend:28,
+      explanation:'多种表面表达（凑不到人、喝不完、无法分别付款）共同指向：活动奖励门槛与个体购买场景之间存在协调成本。',
+      keywords:['三杯','拼单','室友','同事','喝不完','分开付'], search:['买三杯送杯子怎么拼单','三杯赠杯可以分开付款吗','咖啡周边可以累计三杯吗'],
+      phrases:[
+        ['杯子好看，但我一个人早上根本喝不了三杯。',false],['如果能跟同事分别付款、一起凑三杯，我就想参加。',true],['我想要这个杯子，可是去哪找两个人一起买？',true],['这种三杯活动能让大家分开取吗？不然太难约时间了。',false],['可以累计三次买完吗？能的话肯定参加。',true],['自己通勤喝咖啡，哪需要一次买这么多杯呀。',false],['蹲一个一起拼单的姐妹，有人吗？',true],['要是三个人各自付款就方便多了。',true],['杯子我喜欢，三杯真的凑不到，遗憾。',false],['如果不用一次买完三杯，就不用麻烦同事了。',true],['我们办公室很难凑齐三个人，能线上组单就好了。',true],['活动是不错，但一个人喝不完只能放弃。',false],['有互不认识的人也能拼的入口吗？',true],['我不是觉得贵，就是买三杯这个形式不适合单人。',false],['下班跟朋友时间不一致，能各买各的吗？',true]
+      ], count:50 },
+    {id:'pickup',name:'早高峰取餐不便',short:'取餐时间',color:'#da9d57',subtitle:'有购买兴趣，但怕排队耽误通勤',category:'履约体验',trend:16,
+      explanation:'将“排队”“赶地铁”“没时间等”“怕迟到”等表达合并为早高峰履约时间阻力，而不是简单的服务差评。',
+      keywords:['排队','迟到','地铁','出杯','自取','预约'],search:['早八咖啡可以预约取餐吗','赠杯活动排队要多久','咖啡店早上可以提前下单吗'],
+      phrases:[
+        ['想买，但早上赶地铁根本不敢排队。',true],['如果能前一晚预约第二天自取，我一定试试。',true],['这家早上出杯太慢，活动一做估计更挤。',false],['上班只有十分钟空档，不知道能不能直接取。',false],['有快速取餐通道的话可以冲这个活动。',true],['赠杯挺好，就是怕七点半的队伍太长。',false],['能不能提前选时间，不然工作日真来不及。',true],['想参与但是开会前怕等太久。',true],['希望做个到店即取，通勤党真的需要。',true],['路过好几次看到排队，就没点进去下单。',false],['早上拿三杯是不是要等更久？',false],['愿意参加，只要能提前知道取餐时间。',true]
+      ],count:42 },
+    {id:'gift',name:'赠品价值感不足',short:'赠品价值',color:'#8c92b1',subtitle:'讨论声量很高，但未必代表可直接挽回的成交',category:'价值认知',trend:9,
+      explanation:'将“杯子不好看”“赠品不值”“周边吸引力不足”等讨论归为奖励价值问题；有些只是审美吐槽，不一定有明确购买意愿。',
+      keywords:['杯子','设计','颜色','一般','不值','材质'],search:['咖啡赠品杯子质量怎么样','早八赠杯活动杯子实物','联名随行杯值多少钱'],
+      phrases:[
+        ['这次随行杯的配色真的不太行。',false],['杯子看起来有点普通，不值得凑三杯。',false],['我更喜欢上次活动的周边。',false],['送的杯子是不是塑料的？质感有点担心。',false],['设计感一般，看看就好了。',false],['要是换成保温杯我就会考虑参加。',true],['杯型不适合放进我的包里。',false],['这周边有点像库存赠品……',false],['杯子实际质量如何，照片看不出来。',false],['我对赠品不太感冒，咖啡好喝更重要。',false],['能换一款简约设计我可能会买。',true],['限定款是不是也没特别值得收藏？',false],['主要还是想看有没有更实用的东西。',false],['不是很喜欢这次图案，估计跳过了。',false]
+      ],count:68 },
+    {id:'rules',name:'活动规则理解成本',short:'规则复杂',color:'#749c9a',subtitle:'资格、会员与兑换流程信息不清晰',category:'规则信息',trend:21,
+      explanation:'把“看不懂会员条件”“到底能否跨店兑换”“赠品怎么领取”等不同表述归为活动规则的信息摩擦。',
+      keywords:['会员','条件','兑换','规则','券','资格'],search:['赠杯活动会员等级要求','早八集杯三杯兑换规则','不同门店消费可以累计吗'],
+      phrases:[
+        ['到底要不要先注册会员才能参加？',false],['只要说清楚兑换规则，我就去买。',true],['怎么还分不同会员等级，搞不明白。',false],['三杯必须同一个门店购买吗？',false],['如果新用户也能参加我就冲。',true],['赠品是自动送还是需要领券？',false],['资格规则写太绕了，希望一眼能看懂。',false],['能不能放一张简单的说明图？我就去试。',true],['我有会员但不知道活动券在哪里领。',false],['预约购买和现场购买的规则一样吗？',false],['搞清楚限制时间就能顺路买了。',true]
+      ],count:34 },
+    {id:'taste',name:'新品口味不确定',short:'口味顾虑',color:'#8b9d74',subtitle:'口味预期与新品信息不足造成犹豫',category:'产品信息',trend:-6,
+      explanation:'将“怕太甜”“咖啡苦不苦”“想先试口味”理解为产品口味信息不足；未必能通过优惠或凑单解决。',
+      keywords:['太甜','苦','口味','糖','新品','试喝'],search:['早八新品咖啡甜吗','这款咖啡适合不喜欢苦味的人吗','早八新品咖啡评价'],
+      phrases:[
+        ['这个新品听说很甜，有点犹豫。',false],['如果有小杯试喝，我应该就敢买了。',true],['这杯咖啡苦不苦？不太敢盲买。',false],['之前踩过一次口味雷，先观望。',false],['看不懂新品到底是什么风味。',false],['如果有低糖版本我愿意尝试。',true],['很喜欢活动，但不确定这款新品适不适合自己。',false],['最好能有真实试喝笔记，光看广告不敢买。',false],['想看配料表，乳糖不耐受不敢盲点。',false],['能换成经典款参加的话就可以。',true]
+      ],count:31 }
+  ];
+  const contexts=['在公司附近看到活动','早上刷到这条笔记','这周一直在关注','地铁上看到同事转发','看完品牌的活动说明','周一上班路上','朋友把活动发给我','昨天路过门店','准备周末和朋友去','在通勤话题里看到'];
+  const sources=['活动笔记','同城讨论','品牌号留言','通勤话题','周边分享'];
+  let serial=0;
+  const comments=[];
+  issues.forEach((issue, issueIndex)=>{
+    for(let i=0;i<issue.count;i++){
+      const [phrase,conditional]=issue.phrases[i%issue.phrases.length];
+      const context=contexts[(i*3+issueIndex*2)%contexts.length];
+      const content=i%3===0?`${context}，${phrase}`:i%3===1?phrase:`${phrase}（${context}）`;
+      comments.push({id:`C${String(++serial).padStart(4,'0')}`,issue:issue.id,text:content,conditional,day:(i*5+issueIndex*3)%14,source:sources[(i+issueIndex)%sources.length],signal:1+(i*7)%12});
+    }
+  });
+  const cohorts=[
+    {id:'solo',name:'早八独行通勤族',desc:'以工作日早高峰、独自购买为主要场景',focus:'工作日 07:00–09:00',views:2100,carts:1400,purchases:540,reached:16000,
+      fit:{coord:86,pickup:74,gift:34,rules:52,taste:30},search:{coord:94,pickup:63,gift:24,rules:45,taste:22},
+      searchTerms:[{issue:'coord',text:'赠杯活动能拼单吗',share:38},{issue:'coord',text:'咖啡三杯可以分开付吗',share:26},{issue:'pickup',text:'早八咖啡提前取餐',share:25},{issue:'rules',text:'赠杯怎么领取',share:11}],
+      note:'与高频通勤、单人购买场景相关。搜索意图为群组层面的合成汇总，并非对单个未下单者的心理还原。'},
+    {id:'campus',name:'校园结伴消费群',desc:'课间、社团及好友共同购买为主要场景',focus:'校园 · 11:00–16:00',views:1350,carts:820,purchases:480,reached:8400,
+      fit:{coord:55,pickup:39,gift:67,rules:43,taste:48},search:{coord:38,pickup:31,gift:72,rules:42,taste:42},
+      searchTerms:[{issue:'gift',text:'赠杯实物图片',share:37},{issue:'coord',text:'校园集杯如何拼单',share:23},{issue:'taste',text:'联名新品好喝吗',share:22},{issue:'rules',text:'学生能用会员券吗',share:18}],
+      note:'小群体更容易凑单，赠品价值与玩法理解可能比单人协同更重要。'},
+    {id:'offpeak',name:'非高峰独立消费群',desc:'下班后或周末自由时间关注活动的用户',focus:'晚间 / 周末',views:750,carts:460,purchases:250,reached:6600,
+      fit:{coord:19,pickup:21,gift:65,rules:59,taste:70},search:{coord:16,pickup:18,gift:54,rules:62,taste:79},
+      searchTerms:[{issue:'taste',text:'咖啡新品甜不甜',share:35},{issue:'rules',text:'赠品可以跨天兑换吗',share:28},{issue:'gift',text:'杯子值不值得换',share:25},{issue:'coord',text:'活动可以组队吗',share:12}],
+      note:'并非所有群组都受凑单问题影响；不同场景中机会排序可能不同。'}
+  ];
+  const solutions={
+    coord:[
+      {id:'split',name:'多人分别支付 · 共同达标',tag:'体验型改造',mechanic:'保留三杯门槛，允许3位用户分别支付、共同完成奖励。',pros:'降低协同支付成本，避免直接降价',concern:'开发复杂度、退款与奖励归属、多人取餐履约',cost:4,fixed:260, uplift:8},
+      {id:'cumulative',name:'跨日累计三杯 · 兑换周边',tag:'低门槛实验',mechanic:'允许单人一定期限内累计三杯，达标后兑换限量周边。',pros:'降低即时凑单门槛，可能促进复购',concern:'兑换延期、库存管理、是否仅转移既有消费',cost:3,fixed:160,uplift:6},
+      {id:'two',name:'两杯即可领取 · 限量测试',tag:'价格激励',mechanic:'在指定门店测试两杯门槛，同时限制奖励库存。',pros:'操作简单、参与门槛直观',concern:'补贴原有订单、奖励成本上升、毛利承压',cost:8,fixed:120,uplift:10}
+    ],
+    pickup:[
+      {id:'pickupfast',name:'预约即取 · 小范围快取',tag:'履约改造',mechanic:'限定3家门店开设预约取餐时间窗，减少排队不确定性。',pros:'减少早高峰等待感知',concern:'集中取餐导致排队转移，可能影响普通顾客',cost:2,fixed:360,uplift:6},
+      {id:'pickuptime',name:'展示预计取餐时间',tag:'信息优化',mechanic:'在活动详情明确预计出杯时间及拥挤时段提醒。',pros:'实施门槛低，降低信息焦虑',concern:'预计时间不准确可能反噬信任',cost:1,fixed:120,uplift:3}
+    ],
+    gift:[
+      {id:'giftstory',name:'赠品实拍体验内容',tag:'内容沟通',mechanic:'发布功能、材质与实际尺寸的真实体验内容。',pros:'低成本降低认知偏差',concern:'如果价值确实不足，传播无法弥补',cost:1,fixed:200,uplift:2},
+      {id:'gifttest',name:'奖励组合小样本测试',tag:'活动机制',mechanic:'对不同奖励方式开展小规模受控测试。',pros:'检验真实偏好而非主观吐槽',concern:'成本及库存控制困难',cost:6,fixed:420,uplift:4}
+    ],
+    rules:[
+      {id:'rulescard',name:'一图读懂参与规则',tag:'信息优化',mechanic:'明确会员资格、三杯累计、取杯方式和适用门店。',pros:'低成本改善理解',concern:'简化表述不能掩盖实际规则复杂',cost:1,fixed:100,uplift:3},
+      {id:'rulespreview',name:'资格预检小组件',tag:'交互改造',mechanic:'一键确认当前账号能否参加及如何领取。',pros:'降低活动参与不确定性',concern:'开发投入与数据权限',cost:2,fixed:320,uplift:5}
+    ],
+    taste:[
+      {id:'tastecontent',name:'真实口味与低糖信息卡',tag:'内容沟通',mechanic:'提供口味、甜度和真实使用反馈，减少盲买焦虑。',pros:'信息成本低、可提高期待匹配',concern:'产品本身口味不佳时帮助有限',cost:1,fixed:120,uplift:2},
+      {id:'tastetry',name:'新品试饮微实验',tag:'产品体验',mechanic:'有限门店提供小样试饮，测试犹豫人群转化。',pros:'直面实际体验疑虑',concern:'现场人力和试饮损耗',cost:5,fixed:480,uplift:6}
+    ]
+  };
+  const issueById=Object.fromEntries(issues.map(i=>[i.id,i]));
+  const total={views:cohorts.reduce((n,c)=>n+c.views,0),carts:cohorts.reduce((n,c)=>n+c.carts,0),purchases:cohorts.reduce((n,c)=>n+c.purchases,0),reached:cohorts.reduce((n,c)=>n+c.reached,0)};
+  return {issues,issueById,comments,cohorts,solutions,total};
+})();
+
+</script>
+  <script>
+/* 不买账实验室 · 前端业务模拟。无网络请求、无模型调用、无第三方依赖。 */
+(() => {
+'use strict';
+const D=LAB_DATA;
+const names=['购买阻力地图','沉默解码器','增长实验室'];
+const state={step:0,issue:'coord',cohort:'solo',search:false,wordCloud:false,debateStage:0,rankBy:'volume',drawer:false,evidenceFilter:'all',evidencePage:1,solution:'split',inputs:{control:10,treatment:18,margin:22,share:50,cost:4,fixed:260}};
+const money=n=>'¥'+Math.round(n).toLocaleString('zh-CN');
+const fmt=n=>Math.round(n).toLocaleString('zh-CN');
+const pct=n=>(100*n).toFixed(1)+'%';
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const issue=()=>D.issueById[state.issue];
+const cohort=()=>D.cohorts.find(c=>c.id===state.cohort);
+const sol=()=>D.solutions[state.issue].find(s=>s.id===state.solution)??D.solutions[state.issue][0];
+const getCounts=i=>{const cs=D.comments.filter(c=>c.issue===i.id);return {count:cs.length,conditional:cs.filter(c=>c.conditional).length,rate:cs.length?cs.filter(c=>c.conditional).length/cs.length:0}};
+const totalComments=D.comments.length;
+const totalConditional=D.comments.filter(c=>c.conditional).length;
+const ranked=(withSearch=state.search)=>D.issues.map(i=>{
+ const stats=getCounts(i),c=cohort();
+ const volume=stats.count/Math.max(...D.issues.map(t=>getCounts(t).count))*100;
+ const cond=stats.rate*100;
+ const fit=c.fit[i.id];const se=c.search[i.id];
+ const baseline=.18*volume+.36*cond+.46*fit;
+ const score=withSearch ? .12*volume+.27*cond+.37*fit+.24*se : baseline;
+ return {issue:i,...stats,score:Math.round(score),baseline:Math.round(baseline),fit,se};
+}).sort((a,b)=>b.score-a.score);
+const selectedRank=()=>ranked().find(r=>r.issue.id===state.issue);
+const primaryQuote=id=>D.comments.find(c=>c.issue===id&&c.conditional)?.text??'';
+const note=()=>''; // 设计理念统一通过可见的独立按钮查看
+const infoBtn=(title)=>`<button class="panel-info" type="button" data-info="${title}" aria-label="查看${title}功能说明"><span>ⓘ</span> 查看设计理念</button>`;
+const stepHeader=(num,title,desc,action)=>`<div class="page-heading"><div class="step-title-wrap"><div class="eyebrow step-eyebrow">STEP 0${num+1} / 03 · ${['听懂“不买账”的原因','解码沉默用户','验证增长机会'][num]}</div><h1>${num===0?'从表达中发现增长机会':title}</h1><p>${desc}</p></div><div class="page-actions">${action||''}</div></div>`;
+const metric=(name,val,foot,accent=false)=>`<div class="panel metric"><div class="kpi-name">${name}</div><div class="kpi-value t-num ${accent?'kpi-accent':''}">${val}</div><div class="kpi-foot">${foot}</div></div>`;
+function render(){
+ document.querySelectorAll('.nav-link').forEach((el,i)=>el.classList.toggle('active',i===state.step));
+ document.getElementById('crumbCurrent').textContent=names[state.step];
+ document.getElementById('appContent').innerHTML=`<section class="product-masthead"><div class="masthead-emblem" aria-hidden="true"><span></span><span></span><span></span><span></span></div><div><span class="masthead-eyebrow">LOST DEMAND LAB · AI 商业增长决策原型</span><h1>不买账实验室<span class="masthead-period">.</span></h1><p>听懂表达，解码沉默，让增长假设经得起验证。</p></div><span class="masthead-right">LIVE INTERACTIVE DEMO <b>·</b> 3 STEPS</span></section><nav class="flow-track" aria-label="体验完整工作流">${['01 · 听懂表达','02 · 解码沉默','03 · 验证增长'].map((name,j)=>`<button type="button" class="flow-chip ${state.step===j?'current':''}" data-step-to="${j}"><span>${name}</span>${state.step>j?' ✓':''}</button>${j<2?'<span class="flow-join">→</span>':''}`).join('')}</nav>`+[renderMap,renderDecoder,renderExperiment][state.step]();
+ document.getElementById('appContent').querySelectorAll('[data-increase-on]').forEach(el=>el.classList.toggle('active',el.dataset.increaseOn===String(state.search)));
+ if(state.drawer) renderDrawer();else document.querySelectorAll('.drawer,.drawer-backdrop').forEach(e=>e.remove());
+}
+function renderMap(){
+ const max=Math.max(...D.issues.map(x=>getCounts(x).count));
+ const sorted=[...D.issues].sort((a,b)=>{const A=getCounts(a),B=getCounts(b);return state.rankBy==='volume'?B.count-A.count:B.conditional-A.conditional});
+ const tiles=`<div class="semantic-cloud">${[...D.issues].sort((a,b)=>getCounts(b).count-getCounts(a).count).map(i=>{const ss=getCounts(i);return `<button class="issue-tile ${state.issue===i.id?'selected':''}" type="button" data-select-issue="${i.id}" data-open-evidence="${i.id}"><span class="tile-count">${fmt(ss.count)} 条相关表达 · ${esc(i.category)}</span><span class="tile-label">${esc(i.name)}</span><span class="tile-footer">${ss.conditional} 条条件性购买表达　↗ 查看证据</span></button>`}).join('')}</div>`;
+ const keywords=[['杯子',68],['三杯',61],['拼单',48],['排队',35],['上班',25],['取餐',30],['新品',27],['规则',25],['同事',22],['兑换',21],['分开付',20],['喝不完',19],['会员',17],['味道',14],['迟到',13],['颜色',12],['不值',11],['太甜',10]];
+ const cloud=`<div class="keyword-cloud wordcloud-real">${keywords.map(([t,n])=>`<span class="keyword" style="font-size:${12+Math.round(n/68*26)}px;opacity:${.56+n/68*.44}" title="演示关键词：${n}次（示意）">${t}</span>`).join('')}</div><div class="keyword-key">词云以原词的重复出现为线索；上方语义地图进一步合并不同说法，并区分购买条件与一般吐槽。这里的词频用于视觉示意，不代表真实统计。</div>`;
+ const rightRows=sorted.map((i,index)=>{const s=getCounts(i);return `<div class="ranked-row ${state.issue===i.id?'chosen':''}" data-open-evidence="${i.id}" role="button" tabindex="0" aria-label="查看${i.name}证据"><span class="rank-idx">0${index+1}</span><div class="rank-label"><div class="rank-name">${esc(i.name)}</div><div class="rank-meta">${s.conditional} 条条件性购买 · ${(100*s.rate).toFixed(0)}% 的相关表达</div><div class="small-bar-track"><div class="small-bar" style="width:${100*s.count/max}%"></div></div></div><div class="rank-num">${s.count}<span class="micro"> 条</span></div></div>`}).join('');
+ return `${stepHeader(0,'听懂“不买账”的原因','理解已经表达的购买条件，也为没有留下评论的消费者提出可验证的流失假设。')}
+ <section class="story-hero"><div class="story-main"><div class="kicker">THE QUESTION WE WANT TO ASK</div><h2>没有买，不代表没有需求。</h2><p>品牌能看见转化流失，却未必听懂流失背后尚未满足的购买条件。</p><button type="button" class="button methodology-cta hero-method-button" data-info="全局方法">✦ 阅读产品方法论 ↗</button></div><div class="hero-side"><span class="hero-symbol">“</span><div><strong>重新利用被忽略的表达</strong>从情绪与词频<br>走向商业问题</div></div></section>
+ <section class="case-intro"><div><span class="case-intro-label">本 DEMO 案例 · 来自作者真实项目经历的启发</span><h3>连锁咖啡「早八集杯」：买三杯赠限定随行杯</h3><p>灵感来自作者参与的咖啡品牌增长咨询项目，以及当时使用小红书内容和评论开展消费洞察的经历。本演示以早八社交拼单方案为原型；下方评论、群组及转化表现均为合成示例。</p><button type="button" class="button case-story-button" data-info="案例来源">为什么选这个案例？ ↗</button></div></section>
+ <div class="metric-grid">
+ ${metric('购买前表达样本',fmt(totalComments),'逐条预标注 · 数据均为模拟')}
+ ${metric('条件性购买表达',fmt(totalConditional),'是表达，不是已确认的购买需求')}
+ ${metric('活动加购 · 示例',fmt(D.total.carts),'3个人群汇总加购数')}
+ ${metric('加购未支付 · 示例',fmt(D.total.carts-D.total.purchases),`样例加购放弃率 ${pct((D.total.carts-D.total.purchases)/D.total.carts)}`,true)}
+ </div>
+ <div class="main-grid">
+ <section class="panel"><div class="panel-head"><div><h2 class="panel-title">语义购买阻力地图 <span class="pill orange">开发期AI预处理</span></h2><p class="panel-sub">从“出现频次较高的词”进一步识别“值得行动的商业问题”</p></div><div style="display:flex;gap:7px;align-items:center">${infoBtn('语义地图')}</div></div>
+ ${tiles}<div class="wordcloud-control"><button type="button" class="button" data-wordcloud="1">${state.wordCloud?'收起原始关键词词云 ↑':'对比原始关键词词云 ↓'}</button><span>看看原始词频与语义购买阻力有什么不同</span></div>${state.wordCloud?cloud:''}
+ ${note('相似表达通过语义归因合并成“购买阻力”主题。统计基于逐条预标注合成评论计算；它是文本表达占比，不是消费者人数或因果流失率。')}
+ </section>
+ <section class="panel"><div class="panel-head"><div><h2 class="panel-title">阻力信号排行</h2><p class="panel-sub">哪类声音最多？哪类透露了“如果……我就买”？</p></div>${infoBtn('信号排行')}</div><div class="panel-body"><div class="segmented" style="margin-bottom:9px;width:max-content"><button data-rank="volume" class="${state.rankBy==='volume'?'active':''}">按讨论量</button><button data-rank="intent" class="${state.rankBy==='intent'?'active':''}">按条件性表达</button></div>${rightRows}<div class="insight-strip"><div class="insight-icon">!</div><div><strong>热度不等于机会</strong><p>赠品价值讨论最多，但部分评论只有审美吐槽；凑单相关表达更可能包含可测试的购买条件。</p></div></div>${note('条件性购买表达必须在具体上下文中判断，不能仅靠“想买”二字识别，更不能直接当作真实转化预测。')}</div></section>
+ </div>
+ <div class="next-band"><div><strong>下一步：没说话的人，是否也可能遇到同样的问题？</strong><p>将社区表达与加购未支付群组进行场景匹配，再用搜索疑虑补充证据。</p></div><button class="button accent next-primary" data-step-to="1">继续 STEP 02｜解码沉默用户 →</button></div>`;
+}
+function renderDecoder(){
+ const c=cohort(),i=issue(),s=getCounts(i),ranking=ranked();
+ const matchValue=c.fit[i.id];
+ const recommendedCohort=[...D.cohorts].sort((a,b)=>b.fit[i.id]-a.fit[i.id])[0];
+ const recommendation=matchValue<60?`当前匹配较弱，建议对比「${esc(recommendedCohort.name)}」（${recommendedCohort.fit[i.id]}/100），再选择适合验证的人群。`:matchValue<75?`具备部分场景相似性，也可对比「${esc(recommendedCohort.name)}」（${recommendedCohort.fit[i.id]}/100）。`:'场景线索较一致，适合优先开展小样本验证；它仍不是购买原因的证明。';
+ const chosenRank=ranking.findIndex(x=>x.issue.id===i.id)+1;
+ const searchSummary=`${c.searchTerms.map(t=>`<div class="signal-row"><div><div class="signal-cat">搜索意图 · 合成群组统计</div><div class="signal-q">${esc(t.text)}</div></div><span class="signal-val">${t.share}%</span></div>`).join('')}`;
+ const list=ranking.map((x,index)=>`<div class="hypothesis ${state.issue===x.issue.id?'active':''}" data-select-issue="${x.issue.id}" role="button" tabindex="0"><span class="hyp-rank">0${index+1}</span><div><strong>${esc(x.issue.name)}</strong><p>表达 ${x.count} 条 · 相似度 ${x.fit}/100 ${state.search?`· 搜索关联 ${x.se}/100`:''}</p></div><div class="hyp-score">${x.score}<span>优先分</span></div></div>`).join('');
+ const sBaseline=ranked(false).find(x=>x.issue.id===i.id),sBoost=ranked(true).find(x=>x.issue.id===i.id);
+ const beforeLead=ranked(false)[0].issue.name,afterLead=ranked(true)[0].issue.name;
+ const searchDecision=state.search?`<div class="decision-shift"><span class="decision-symbol">↗</span><div><strong>${beforeLead===afterLead?'新增搜索证据，首位假设得到进一步支持':'新增搜索证据，首位假设发生变化'}</strong><p>${beforeLead===afterLead?`目前优先验证「${esc(afterLead)}」，但仍需实验确认。`:`原先「${esc(beforeLead)}」优先 → 当前建议优先验证「${esc(afterLead)}」。`}<br>注意：这只是启发式排序变化，不代表真实因果关系。</p></div></div>`:'';
+ return `${stepHeader(1,'让沉默的行为，有可验证的解释','把表达者的购买疑虑与未支付群组的消费场景进行匹配，再加入搜索意图作为补充证据，筛选值得优先验证的原因假设。',`<button class="button" data-step-to="0">← 查看语义地图</button>`)}
+ <div class="metric-grid">
+ ${metric('当前研究群组',esc(c.name),'可切换观察不同人群')}
+ ${metric('活动详情浏览',fmt(c.views),'汇总会话 · 合成数据')}
+ ${metric('加购未支付',fmt(c.carts-c.purchases),'加购与购买差值 · 合成数据',true)}
+ ${metric('群组加购放弃率',pct((c.carts-c.purchases)/c.carts),'不能单凭这一比例推断流失原因')}
+ </div>
+ <div class="step-grid">
+ <section class="panel"><div class="panel-head"><div><h2 class="panel-title">01 · 选择沉默群组</h2><p class="panel-sub">用消费场景构建群组，而非假装识别个人意图</p></div>${infoBtn('群组匹配')}</div><div class="cohort-list">${D.cohorts.map(x=>`<button class="cohort-card ${state.cohort===x.id?'selected':''}" data-cohort="${x.id}"><div class="cohort-card-top"><span class="cohort-name">${esc(x.name)}</span><span class="selected-check">✓</span></div><div class="cohort-desc">${esc(x.desc)}</div><div class="cohort-facts"><span>加购 ${fmt(x.carts)}</span><span>未支付 <b>${fmt(x.carts-x.purchases)}</b></span></div></button>`).join('')}</div>
+ <div class="panel-head" style="padding-top:1px"><div><h2 class="panel-title">02 · 搜索疑虑 · 辅助线索</h2><p class="panel-sub">用户未评论时，主动搜索的问题也可能透露决策疑虑</p></div>${infoBtn('搜索意图')}</div>
+ <div class="search-toggle-row"><div><h4>加入群组搜索意图</h4><p>${state.search?'搜索信号已纳入假设排序':'当前仅使用表达量、条件性表达、场景相似度'}</p></div><button type="button" class="switch ${state.search?'on':''}" data-search-toggle aria-label="${state.search?'关闭':'加入'}搜索证据" aria-pressed="${state.search}"></button></div>
+ <div class="panel-body">${state.search?`<div style="font-size:10px;color:#8f9b92;margin:1px 0 5px">下列百分比只表示示例搜索主题构成，不是用户重合率。</div>${searchSummary}`:`<div style="font-size:11px;color:#94a097;line-height:1.8;padding:1px 0 12px">打开搜索辅助证据后，可观察相同购买问题如何得到第二来源支持，并比较假设优先级的变化。</div>`}${note('搜索词不能直接等于购买动机；只有授权的、同群组可比较数据才可进入更强的关联判断。否则只做背景线索。')}</div></section>
+ <section>
+ <div class="panel"><div class="panel-head"><div><h2 class="panel-title">表达者 × 沉默者 · 场景匹配</h2><p class="panel-sub">两个证据群组，相互支持，但不等同于因果识别</p></div>${infoBtn('匹配机制')}</div>
+ <div class="evidence-chain"><div class="chain-block"><div class="chain-label">已表达者 · EXPLICIT VOICE</div><h3>${esc(i.name)}</h3><p>${s.count} 条同类表达经语义合并；其中 ${s.conditional} 条包含条件性购买信号</p><div class="quote">“${esc(primaryQuote(i.id))}”</div><button type="button" data-open-evidence="${i.id}" class="button small" style="margin-top:11px">查看评论证据 ↗</button></div><div class="chain-arrow">⇢</div><div class="chain-block"><div class="chain-label">沉默者 · BEHAVIORAL GROUP</div><h3>${esc(c.name)}</h3><p>${esc(c.focus)} · 没有表达流失原因的高意向行为群组</p><div class="chain-small-data"><div><b>${fmt(c.carts-c.purchases)}</b><span> 加购未支付</span></div><div><b>${pct((c.carts-c.purchases)/c.carts)}</b><span> 放弃率</span></div></div><div class="fit-result ${matchValue<60?'fit-low':matchValue>=75?'fit-high':'fit-mid'}"><div><span class="fit-caption">当前主题 × 群组 · 情境匹配</span><strong class="fit-number">${matchValue}<small>/100</small></strong></div><span class="fit-level">${matchValue<60?'匹配较弱':matchValue>=75?'较高匹配':'中等匹配'}</span></div><div class="fit-explain">${recommendation}</div></div></div><div class="chain-insight"><span>群组解码结论</span><strong>针对「${esc(c.name)}」，「${esc(i.name)}」是${matchValue<60?'需要谨慎核实':'值得验证'}的购买阻力假设。</strong><p>已表达者提供原因线索，未支付群组提供行为场景；匹配越高仅说明情境越相似，不等于流失成因已被证实。</p></div>
+ <div class="panel-body">${note('匹配依据是事先定义的消费场景相似度（模拟指标），不是用户身份匹配、因果归因或心理概率。输出必须保留“不确定”与“尚待实验”的状态。')}</div></div>
+ <div class="panel" style="margin-top:16px"><div class="panel-head"><div><h2 class="panel-title">购买阻力假设优先级 <span class="pill amber">待验证</span></h2><p class="panel-sub">当前群组「${esc(c.name)}」 · 切换群组或搜索证据，下面的排序会同步更新</p></div>${infoBtn('优先级评分')}</div><div class="panel-body"><div class="match-score match-summary"><div class="summary-topline"><span class="summary-kicker">当前沉默群组：<b class="summary-cohort">${esc(c.name)}</b></span><span class="pill ${state.search?'green':'dark'}">${state.search?'已加入搜索证据':'表达 + 场景证据'}</span></div><strong class="summary-headline">选中购买阻力假设：${esc(i.name)} <span class="summary-rank">当前排序第 ${chosenRank} 位</span></strong><p>${esc(i.subtitle)}。${matchValue<60?'建议对比更匹配群组后':'建议'}通过小样本实验进一步验证。</p><div class="summary-priority">当前群组优先级第 1：<b>${esc(ranking[0].issue.name)}</b>${ranking[0].issue.id!==i.id?' · 点击下方条目即可切换':''}</div><div class="match-warning">当前假设示例优先分：${sBaseline.score} → ${state.search?sBoost.score:sBaseline.score} ${state.search?'（加入搜索证据）':'（未加入搜索证据）'}；优先分不等于购买概率。</div></div><div class="assumptions-list">${list}</div>${searchDecision}</div></div>
+ </section></div>
+ <div class="spotlight"><div><div class="title">决策不是“认定原因”，而是“选择最值得验证的原因”。</div><p>选中：${esc(i.name)} × ${esc(c.name)}。下一步将它变成可执行实验，并让创意红队质疑方案的真实增量。</p></div><button class="button accent" data-step-to="2">进入增长实验室 ↗</button></div>`;
+}
+function renderExperiment(){
+ if(!D.solutions[state.issue].some(s=>s.id===state.solution)){const s=D.solutions[state.issue][0];state.solution=s.id;state.inputs.cost=s.cost;state.inputs.fixed=s.fixed;state.inputs.treatment=state.inputs.control+s.uplift;}
+ const i=issue(),c=cohort(),selected=sol();
+ return `${stepHeader(2,'让增长假设，经得起挑战','从购买阻力到解决方案：先小单快反，再用对照结果衡量是否真的创造了增量。商业红队不是来唱反调，而是避免“看起来有效”。',`<button class="button" data-step-to="1">← 回到沉默解码器</button>`)}
+ <section class="panel hypothesis-selector"><div class="panel-head"><div><span class="source-chip">承接 STEP 02 · 沉默解码器</span><h2 class="panel-title">01 · 选择要验证的购买阻力假设</h2><p class="panel-sub">将上一阶段的群组证据带入实验；可在这里直接切换当前研究的问题</p></div>${infoBtn('匹配机制')}</div><div class="hypothesis-options">${ranked().slice(0,4).map((x,index)=>`<button type="button" class="hypothesis-option ${state.issue===x.issue.id?'active':''}" data-select-issue="${x.issue.id}"><small>假设 ${index+1}</small><strong>${esc(x.issue.name)}</strong><span>${x.score} · 启发式优先分</span></button>`).join('')}</div><div class="hypothesis-bridge"><strong>当前选择：${esc(i.name)} × ${esc(c.name)}</strong><p>依据：${getCounts(i).count}条相关表达、${getCounts(i).conditional}条条件性表达、群组场景相似度${state.search?'及搜索意图':''}。这些证据支持提出假设，但尚未证明流失原因。</p></div></section>
+ <div class="lab-top" style="margin-top:17px">
+ <section class="panel"><div class="panel-head"><div><h2 class="panel-title">02 · 选择最小商业动作</h2><p class="panel-sub">选一个可落地、可对照的机制变化，优先验证而非直接全量推广</p></div>${infoBtn('增长方案')}</div><div class="solution-list">${D.solutions[state.issue].map(x=>`<button class="solution-card ${state.solution===x.id?'active':''}" type="button" data-solution="${x.id}"><span class="radio"></span><div><span class="solution-name">${esc(x.name)}</span><span class="solution-tag">${esc(x.tag)}</span><p>${esc(x.mechanic)}</p></div></button>`).join('')}</div></section>
+ <section class="panel"><div class="redteam-card"><div class="redteam-head"><div class="eyebrow">COMMERCIAL RED TEAM</div>${infoBtn('商业红队')}</div><h3>好主意经得起推敲。</h3><p>围绕「${esc(i.name)}」与「${esc(selected.name)}」挑战证据可靠性、执行风险和增量价值。</p><div class="red-list"><div class="red-item"><span class="alert">01</span><div>评论者和未支付者不是同一群人。这个阻力真的影响当前沉默群组吗？</div></div><div class="red-item"><span class="alert">02</span><div>${esc(selected.concern)}。</div></div><div class="red-item"><span class="alert">03</span><div>实验组成交更多，是新增订单，还是原本就会购买的人获得了优惠？</div></div></div><button type="button" class="button debate-button" data-debate="1">⚖️ ${state.debateStage?'重新查看六视角辩论':'启动六视角模拟辩论'} ↗</button><div class="red-bottom">六类商业利益相关方交叉质疑 · 从“看起来可行”走向“值得验证”（当前为演示角色模拟）</div></div></section>
+ </div>
+ ${state.debateStage?renderDebate():''}
+ <section class="panel"><div class="panel-head"><div><h2 class="panel-title">03 · 商业情景测算：改这个方案划不划算？</h2><p class="panel-sub">拖动参数，比较可能增加的订单与要付出的成本；这是测试前的预算演练，不是真实效果预测</p></div>${infoBtn('商业测算')}</div>
+ <div class="calc-howto"><div><b>1</b> 设定旧方案与新方案各自会卖出多少</div><span>→</span><div><b>2</b> 填入每单毛利、优惠与执行成本</div><span>→</span><div><b>3</b> 看多卖的订单能否覆盖额外成本</div></div><div class="calculator"><div class="form-side"><div class="form-helper"><strong>先比较两种方案，再计算净增量</strong><p><b>对照组</b>＝不改活动规则；<b>实验组</b>＝采用新机制。先设定两边各自的假设购买率，再调整成本。旧方案购买率越低（其他值不变），两者差距越大，新增收益就可能越高——不是要故意降低旧方案表现。</p></div>
+ ${range('control','对照组预期购买率',2,30,1,'%')}
+ ${range('treatment','实验组预期购买率',2,45,1,'%')}
+ ${range('share','分配给实验组的群组占比',10,90,10,'%')}
+ ${range('margin','每笔增量订单贡献毛利',5,50,1,'元')}
+ ${range('cost','每笔实验组成交额外成本',0,18,1,'元')}
+ ${range('fixed','固定执行成本',0,1000,20,'元')}
+ <div class="field-hint">默认实验池：${fmt(c.carts-c.purchases)} 次加购未支付。实验/对照两组应在真实环境中随机分配、符合授权条件。</div></div><div class="calculator-results" id="calcResults">${renderCalcResults()}</div></div>${note('仅计算情景下的预期增量与利润，不展示AI预测概率。真实效果须依赖随机实验，观察净新增订单/毛利与履约体验。')}</section>
+ <section class="experiment-card"><div class="eyebrow">MINIMUM VIABLE EXPERIMENT</div><div style="display:flex;justify-content:space-between;gap:15px;align-items:center;margin-top:7px"><div><h3 style="font-size:17px">04 · 把核心不确定性变成可验证问题</h3><p style="font-size:11px;color:#94a197;line-height:1.7;margin-top:7px">围绕「${esc(selected.name)}」设计最小商业实验，而不是直接全量上线。</p></div><span class="pill green">小单快反</span></div>
+ <div class="experiment-grid"><div class="exp-col"><div class="exp-index">01 / 对照</div><h4>谁接受什么处理？</h4><p>从同一高意向加购未支付群组随机分配实验/对照。对照沿用原活动规则，实验采用「${esc(selected.name)}」。</p></div><div class="exp-col"><div class="exp-index">02 / 指标</div><h4>什么才算真的有效？</h4><p>主要指标：净增量支付订单与贡献毛利；护栏指标：客诉、取餐等待、奖励核销及对既有订单的替代。</p></div><div class="exp-col"><div class="exp-index">03 / 退出条件</div><h4>何时扩张 / 何时停止？</h4><p>达到预先定义的样本量和观察周期后，再判断效果；若成本或履约指标越界，立即停止扩张。</p></div></div>
+ <div class="exp-actions"><button type="button" class="button" data-pessimistic="1">用悲观假设挑战一次</button><button type="button" class="button" data-reset-calc="1">恢复参数</button><button type="button" class="button accent" data-card-preview="1">查看可视化决策卡 ↗</button></div>
+ ${note('“小单快反”要求明确试验预算、单一可验证变量、对照组和停止规则。红队问题进入实验设计而不是独立生成一份漂亮报告。')}
+ </section>`;
+}
+function renderDebate(){const i=issue(),s=sol();const agents=[
+ ['消费者研究员','支持探索','用户表达里存在具体的“如果……我就买”条件，值得把它当作需要验证的商业线索。','https://www.nngroup.com/articles/attitudinal-behavioral/','NN/g · 态度与行为研究'],
+ ['增长策略师','支持试验',`先以「${esc(s.name)}」验证${esc(i.name)}是否可被干预，而不是继续追加曝光预算。`,'https://support.google.com/google-ads/answer/12003020?hl=en','Google · 增量实验方法'],
+ ['产品运营','支持试验','Baymard追踪的跨站点购物车放弃率约70.22%；这说明流失值得研究，但不意味着本活动有同样比例或同样原因。可先小范围测试，并关注支付与履约。','https://baymard.com/lists/cart-abandonment-rate','Baymard · 放弃率与原因研究'],
+ ['数据科学家','提出质疑','评论表达与未支付群组未必来自同一批人；相关线索不能替代因果证据。','https://www.nngroup.com/articles/attitudinal-behavioral/','NN/g · 所说与所做可能不同'],
+ ['财务负责人','提出质疑',`即使订单增长，${esc(s.concern)}；必须关注真实增量价值与额外成本，才能判断增量利润。`,'https://support.google.com/google-ads/answer/14102450?hl=en','Google · 增量价值与iROAS说明'],
+ ['实验评审','提出质疑','需在同质样本中随机分组，观察对照差异；若无法覆盖成本或履约指标恶化，就停止扩张。','https://support.google.com/google-ads/answer/12003020?hl=en','Google · 对照与增量']];
+ return `<section class="panel debate-panel"><div class="panel-head"><div><span class="source-chip">六角色交叉论证 · COMMERCIAL DEBATE</span><h2 class="panel-title">红队辩论室：谁支持？谁反对？</h2><p class="panel-sub">围绕当前「${esc(i.name)}」假设及「${esc(s.name)}」方案进行多视角压力测试</p></div><button type="button" class="button small" data-debate-close="1">收起 ↑</button></div><div class="debate-architecture"><div><strong>为什么要辩论？</strong><p>消费者想要的方案，未必是门店能执行、品牌能盈利、实验能证实的方案。让不同商业角色交叉质询，才能发现单一增长视角容易忽略的风险和证据缺口。</p></div><div><strong>实际产品如何运行？</strong><p>根据消费者研究、增长、产品运营、数据、财务和实验评审等角色配置不同 System Prompt、模型和专属知识源；引入可核验的研报、公开研究及授权经营数据，先独立论证，再交叉质询、核验依据并提出实验条件。</p></div><div class="debate-disclaimer">当前为静态前端模拟：六角色观点已预设，不发生实时模型辩论。下方研究链接可核验其通用方法依据，但不构成本咖啡案例的实证证据。</div></div><div class="debate-cards">${agents.map((a,j)=>`<article class="debate-voice ${j<3?'agree':'challenge'}"><div class="debate-head"><span class="debate-avatar">${['研','增','运','数','财','验'][j]}</span><div><strong>${a[0]}</strong><small>${a[1]}</small></div></div><p>${a[2]}</p><a href="${a[3]}" rel="noopener noreferrer" target="_blank">研究参考：${a[4]} ↗</a></article>`).join('')}</div>${state.debateStage===1?`<div class="debate-action"><p>先看六种角色如何提出不同判断，再汇总成实验原则。</p><button type="button" class="button accent" data-debate-summary="1">生成辩论结论 →</button></div>`:`<div class="debate-summary"><strong>辩论结论｜建议小规模测试，不建议直接全量上线</strong><p><b>支持理由：</b>出现了可描述、可改变的购买条件，可低成本测试。<br><b>反方提醒：</b>评论不是沉默用户的直接证词；预算、履约与新增购买必须分别验证。<br><b>共同行动：</b>针对「${esc(s.name)}」预设对照组、利润与履约护栏，检验真实增量。</p><small>外部资料只支持一般研究方法或行业背景，不证明本虚构咖啡活动的实际效果。</small></div>`}</section>`;
+}
+function range(k,label,min,max,step,unit){return `<div class="form-field"><label for="input-${k}">${label}<b id="value-${k}">${state.inputs[k]}${unit}</b></label><input type="range" id="input-${k}" data-range="${k}" min="${min}" max="${max}" step="${step}" value="${state.inputs[k]}" aria-label="${label}"/></div>`}
+function calc(){const c=cohort(),v=state.inputs,n=(c.carts-c.purchases)*v.share/100,control=n*v.control/100,treatment=n*v.treatment/100,increment=treatment-control,revenue=increment*v.margin,programCost=treatment*v.cost+v.fixed,net=revenue-programCost,threshold=(v.control/100*v.margin + v.fixed/n)/(v.margin-v.cost);return {n,control,treatment,increment,revenue,programCost,net,threshold};}
+function renderCalcResults(){const r=calc(),v=state.inputs,positive=r.net>=0;return `<div class="result-hero ${positive?'':'negative'}"><div class="result-kicker">模拟增量贡献收益 · 非效果预测</div><div class="rate-comparison">旧方案 <b>${v.control}%</b><span>→</span> 新方案 <b>${v.treatment}%</b><small>差 ${v.treatment-v.control>=0?'+':''}${v.treatment-v.control} 个百分点</small></div><div class="result-num" id="result-net">${r.net>=0?'+':''}${money(r.net)}</div><p>额外成交贡献毛利 − 全部实验组成交附加成本 − 固定执行成本。用于比较情景，不代表实际ROI。</p></div><div class="calc-stats"><div class="calc-stat"><div class="stat-label">实验组规模</div><div class="stat-value" id="result-n">${fmt(r.n)}</div><div class="stat-note">次加购未支付</div></div><div class="calc-stat"><div class="stat-label">相对对照的增量订单</div><div class="stat-value" id="result-inc">${r.increment>=0?'+':''}${r.increment.toFixed(1)}</div><div class="stat-note">假设成交率差异</div></div><div class="calc-stat"><div class="stat-label">实验总额外成本</div><div class="stat-value" id="result-cost">${money(r.programCost)}</div><div class="stat-note">含固定执行成本</div></div></div><div class="calc-formula" id="result-formula">对照组预计 ${r.control.toFixed(1)} 单｜实验组预计 ${r.treatment.toFixed(1)} 单<br>情景盈亏平衡要求实验组成交率 ${Number.isFinite(r.threshold)&&r.threshold>=0?(100*r.threshold).toFixed(1)+'%':'无法在当前毛利/成本条件下达到'}。<br><strong>提示：</strong>所有“预计”只是输入假设的算术结果；真实试验需考察延迟购买、样本波动与显著性。</div>`}
+function updateCalcUI(){const el=document.getElementById('calcResults');if(el)el.innerHTML=renderCalcResults();Object.keys(state.inputs).forEach(k=>{const val=document.getElementById('value-'+k);if(val) val.textContent=state.inputs[k]+(k==='fixed'||k==='margin'||k==='cost'?'元':'%')})}
+function setStep(step){state.step=Math.max(0,Math.min(2,step));if(state.step===2&&!D.solutions[state.issue].some(s=>s.id===state.solution))setSolution(D.solutions[state.issue][0].id);state.drawer=false;render();window.scrollTo({top:0,behavior:'smooth'});if(document.getElementById('sidebar').classList.contains('mobile-open'))setMobileMenu(false);}
+function setSolution(id){const x=D.solutions[state.issue].find(s=>s.id===id);if(!x)return;state.solution=id;state.inputs.cost=x.cost;state.inputs.fixed=x.fixed;state.inputs.treatment=Math.min(45,state.inputs.control+x.uplift)}
+function selectIssue(id){if(!D.issueById[id])return;state.issue=id;setSolution(D.solutions[id][0].id);state.debateStage=0;render();}
+function renderDrawer(){document.querySelectorAll('.drawer,.drawer-backdrop').forEach(e=>e.remove());const i=issue(),list=D.comments.filter(c=>c.issue===i.id),filtered=list.filter(c=>state.evidenceFilter==='all'||(state.evidenceFilter==='conditional'&&c.conditional)||(state.evidenceFilter==='other'&&!c.conditional)),n=state.evidencePage*10;let h=`<div class="drawer-backdrop" data-close-drawer="1"></div><aside class="drawer" role="dialog" aria-modal="true" aria-label="${esc(i.name)}评论证据"><div class="drawer-top"><div><div class="eyebrow">SEMANTIC EVIDENCE</div><h2>${esc(i.name)}</h2><p>来自${list.length}条合成表达的语义归因。每条可回到原文，拒绝“黑箱洞察”。</p></div><button class="close-btn" data-close-drawer="1" aria-label="关闭详情">×</button></div><div class="drawer-body"><div class="drawer-facts"><div><strong>${list.length}</strong><p>相关表达</p></div><div><strong>${list.filter(c=>c.conditional).length}</strong><p>条件性表达</p></div><div><strong>${pct(list.filter(c=>c.conditional).length/list.length)}</strong><p>表达比例</p></div></div><div class="drawer-explain">${esc(i.explanation)}<br><span style="color:#aa8476">关键词只是表层提示：${i.keywords.map(esc).join(' / ')}</span></div><div class="drawer-filters"><button class="filter-button ${state.evidenceFilter==='all'?'active':''}" data-filter="all">全部 (${list.length})</button><button class="filter-button ${state.evidenceFilter==='conditional'?'active':''}" data-filter="conditional">条件性表达</button><button class="filter-button ${state.evidenceFilter==='other'?'active':''}" data-filter="other">其他/反例</button></div><div class="comment-list">${filtered.slice(0,n).map(c=>`<article class="comment"><div class="comment-top"><span>${esc(c.id)} · ${esc(c.source)}</span><span>模拟 · D${String(c.day+1).padStart(2,'0')}</span></div><p>“${esc(c.text)}”</p><div class="comment-bottom"><span>LLM离线语义归因：${esc(i.name)}</span>${c.conditional?'<span class="comment-badge">条件性购买表达</span>':'<span>购买意向未确认</span>'}</div></article>`).join('')}</div>${filtered.length>n?`<button class="button drawer-more" data-show-more="1">继续查看 ${Math.min(10,filtered.length-n)} 条 →</button>`:`<p class="micro" style="margin:15px 0;text-align:center">已显示当前筛选的全部 ${filtered.length} 条示例表达</p>`}<p class="micro" style="line-height:1.8;margin-top:15px">样例通过预设语句组合生成，不对应真实用户、账号或小红书抓取数据。评论数不代表独立用户数。</p><button class="button accent" style="width:100%;margin-top:14px" data-step-to="1">带着这个问题进入沉默解码器 ↗</button></div></aside>`;document.body.insertAdjacentHTML('beforeend',h);}
+function showInfo(key){const copy={
+ '全局方法':['从商业问题到产品方案｜方法论','<p><strong>01 · 为什么需要这个产品？</strong><br>浏览、加购、付款等行为指标能定位流失发生在哪里，却不能直接解释用户在犹豫什么。低转化率与加购流失背后，可能存在尚可消除的购买阻力：解决其中一小部分，也有机会提升已有流量的投入效率、增量成交和长期客户价值（LTV），但可挽回规模必须通过真实实验验证。与此同时，大量用户反馈又是零散的自然语言：同一个问题有许多说法，简单词频和情感分类难以直接形成可执行的决策。</p><p><strong>02 · 为什么小红书有独特切入点？</strong><br>传统社媒偏向“货找人”，传统货架电商偏向“人找货”；小红书在内容发现、社区讨论、主动搜索和消费决策之间形成动态平衡。消费者会通过笔记、评论和主动搜索表达消费需求与疑虑。这些已表达的内容虽然不能代表所有沉默用户，却能够与场景相似的未支付群组及搜索行为相互参照，为尚未表达的人群提出更有依据、可验证的购买阻力假设——这也是社区与商业行为结合的价值。</p><p><strong>03 · 为什么借助大语言模型？</strong><br>传统关键词检索与词频统计擅长计数，却难以在规模化处理时保留上下文、识别不同措辞背后的共同商业问题；人工逐条阅读又难以持续覆盖大量内容。LLM能够把“找不到人凑单”“无法分开付款”“一个人喝不了三杯”等不同说法聚合为同一个购买阻力主题，保留原文证据，并将定性表达转成可观察的统计指标。这是语义归因，不只是词频变大。</p><p><strong>04 · 三个核心功能</strong><br>① <b>语义购买阻力地图</b>：理解表达者，聚合和量化购买条件；<br>② <b>沉默解码器</b>：让表达者的语义主题与未支付群组的场景、搜索证据相互参照，提出群组级假设；<br>③ <b>增长实验室</b>：为假设设计最小商业动作，用六视角红队挑战，再制定A/B验证与成本情景。</p><p><strong>05 · 如何衡量成败？</strong><br>不是AI声称知道用户为何不买，而是让品牌更快发现值得验证的问题；最终应以真实实验的增量支付、贡献毛利和履约体验衡量。当前咖啡Campaign及所有数据均为模拟。</p>'],
+ '案例来源':['为什么选择「早八集杯」？','<p class="case-scope-hint">☕ 本Demo以咖啡品牌营销项目为演示案例；同一方法也可迁移至美护、服饰、快消及耐消等行业的品牌营销场景，前提是具备相应授权数据。</p><p><strong>真实经历带来的问题意识。</strong><br>灵感来自作者参与的咖啡品牌增长咨询项目。调研期间，小红书凭借种草内容与社区讨论，成为理解消费场景和真实用户表达的重要资料来源；但大量笔记与评论仍依赖人工阅读，需要同时判断文字语境、群体差异与内容代表性，难以持续量化。</p><p><strong>为什么想用AI重新做一遍？</strong><br>今天的LLM可以更高效地归纳复杂文本，将“找不到人凑”“三杯喝不完”“能否分开付”等不同表达总结为可追溯的购买阻力主题。同时，小红书在“货找人”的内容发现与“人找货”的主动搜索之间形成独特的消费决策场景，让已表达者的需求能够与相似情境下的沉默行为、搜索疑虑交叉参照——这也启发了“沉默解码器”。</p><p><strong>为什么适合做Demo？</strong><br>「早八集杯」同时具备明确营销机制、条件性购买表达和可检验的运营约束，能在一条链路中展示语义聚合、沉默群组假设与小单快反。</p><p><strong>事实边界：</strong>真实的是作者的项目经历与研究动机；当前Demo中的评论、购买漏斗、搜索信号、方案执行结果均为合成演示，不是实际客户数据，也不声称活动已上线产生这些效果。</p>'],
+ '商业红队':['为什么需要多视角商业红队？','<p><strong>好主意，也要经得起不同立场的推敲。</strong><br>用户希望拼单，不代表品牌、门店和平台立即适合上线该功能；成交增加也未必代表净利润增长。单一增长视角容易忽略样本偏差、执行成本、履约风险和增量归因。</p><p><strong>为什么采用多种角色？</strong><br>真实业务涉及消费者研究、品牌增长、产品运营、数据科学、财务和实验评审等利益相关方，目标与约束并不相同。本Demo选择六种典型视角覆盖主要分歧，角色数量并非固定标准；重点是让不同立场基于共同问题充分质询。</p><p><strong>如何让辩论有证据，而非空谈？</strong><br>正式产品可按角色任务配置不同 System Prompt、模型及专业知识源，发挥模型性能与数据覆盖的互补优势；接入真实研报、公开研究和经授权的内部经营数据。关键论点应附可核验的来源、数据口径与适用边界，再经“独立判断→交叉质询→证据核验→形成实验建议”完成决策支持。</p><p><strong>当前Demo说明。</strong><br>本纯前端版本展示的是预设的六角色模拟辩论，并未实时调用多个模型；所附研究链接提供通用背景或方法依据，不构成当前合成咖啡案例的实证结果。</p>'],
+ '语义地图':['为何不是传统关键词词云？','<p>词频相近未必意味着商业问题相同，同一个商业阻力也可能被几十种表达方式描述。语义归因将“找不到人”“无法分开付”“一个人喝不完”聚到“凑单协调门槛”，但将“三杯太贵”划入不同原因。</p><p>当前语义结果为离线预标注合成案例，浏览器里不运行LLM。</p>'],
+ '信号排行':['为什么同时看表达量与购买条件？','<p>评论数量反映讨论规模，不等于增量机会。条件性表达表示用户提及“满足某个条件可能购买”，它可以帮助提出假设，却无法代表真实的购买概率或流失人群占比。</p>'],
+ '群组匹配':['为什么选群组，而不直接匹配个人？','<p>只有加购、退出等行为时，无法凭空推断个人购买动机。本产品将“表达者”的需求与“沉默者”的消费场景作群组级相似度比较，输出需要验证的阻力假设，避免假装读心。</p><p>场景相似度指数为演示时定义的启发式示例，不是算法真实识别准确率。</p>'],
+ '搜索意图':['搜索为什么是第二证据？','<p>相比纯点击，“能不能拼单”“赠品怎么兑换”是更具体的购买前问题表达。只有在合适的数据权限和可比较群组口径下，它才能提高假设排序的参考价值。</p><p>示例百分比是群组主题分布，不是沉默用户的个体搜索历史。</p>'],
+ '匹配机制':['什么证据能放在一起？','<p>社区评论提供已表达者的阻力线索，品牌授权行为数据描述群组中的未支付现象；关联搜索则提供额外的意图线索。不同来源即便同时支持，也只能形成“值得验证的假设”，不能证明因果关系。</p>'],
+ '优先级评分':['评分是如何计算的？','<p>一个透明的启发式排序：未加入搜索时，按表达量18%、条件性表达率36%、场景相似度46%加权；加入搜索后，调整为表达量12%、条件性表达率27%、场景相似度37%、搜索主题关联24%。所有输入示例均为合成数据。</p><p>该分值仅用于演示权重如何改变研究先后顺序，不能解读为“购买阻力存在的概率”或转化率。</p>'],
+ '增长方案':['为什么一条阻力对应不同方案？','<p>发现阻力并不意味着马上知道最优解。同样是凑单协调门槛，可以测试分别付款、跨日累计或降低奖励门槛。三者的增长机制、成本和副作用都不同。</p>'],
+ '商业测算':['看懂这张商业测算表','<p>这不是在计算整场活动的总利润，而是比较“沿用旧方案”与“尝试新机制”的增量价值。两组购买率都是用户自行设定的情景假设，不能拿新方案购买率直接当作AI的效果预测。</p><p><strong>为什么降低对照组购买率，净收益反而会增加？</strong><br>若新方案购买率不变，旧方案购买率下降意味着两种方案的成交差额更大，因此算出的增量贡献更高。这是在改变基准情景，不是建议降低原有转化率。评估时应比较不同假设，并通过真实随机实验获得两组数据。</p><p>增量单数＝实验组规模×（实验组购买率−对照组购买率）；净贡献＝增量单数×每单贡献毛利−实验组成交附加成本−固定执行成本。</p><p>所有购买率均是可调情景假设；实际需要合格的随机实验、足够的样本和观察期。</p>']
+}; const d=copy[key]||copy['全局方法'];document.getElementById('modalTitle').innerHTML=d[0];document.getElementById('modalBody').innerHTML=d[1];document.getElementById('infoDialog').showModal();}
+function showTour(){document.getElementById('modalTitle').textContent='推荐 90 秒演示路线';document.getElementById('modalBody').innerHTML='<p><strong>① 听懂用户表达。</strong>在语义阻力地图中选择一个主题，点开证据查看原始评论；需要时展开原始关键词词云作对比。</p><p><strong>② 沉默用户不是“被读心”。</strong>选中通勤群组、加入搜索意图，观察群组级假设排序及证据边界。</p><p><strong>③ 决策靠最小实验验证。</strong>选择拼单或累计方案，修改购买率和成本，观察净贡献变化；查看红队挑战并导出计划。</p><p>所有数据均为模拟。关键计算与点击在浏览器本地完成，无须联网。</p>';document.getElementById('infoDialog').showModal();}
+function downloadCard(){const c=cohort(),i=issue(),s=sol(),r=calc(),v=state.inputs;const content=`# 不买账实验室｜增长实验建议卡\n\n> ⚠️ 完全合成案例、纯前端情景测算；不可视为真实用户行为、模型准确率或商业效果。\n\n## 研究问题\n- 场景：早八集杯，三杯赠限定杯（虚构）\n- 高意向沉默群组：${c.name}\n- 群组加购：${c.carts}，购买：${c.purchases}，加购未支付：${c.carts-c.purchases}\n- 待验证购买阻力：${i.name}\n- 评论相关表达：${getCounts(i).count}条，其中条件性购买：${getCounts(i).conditional}条\n- 研究证据：语义表达+场景相似度${state.search?'+群组搜索意图':''}（均为模拟示例）\n\n## 最小动作\n- 方案：${s.name}\n- 机制：${s.mechanic}\n- 机会：${s.pros}\n\n## 商业红队\n1. 评论者并不代表加购流失者；需补充同群组验证。\n2. 运营与成本风险：${s.concern}\n3. 警惕既有购买被补贴，不将归因订单全部算作增量。\n4. 避免小样本与短期波动导致错误推广。\n\n## 随机实验（建议）\n- 实验池：${c.carts-c.purchases}次加购未支付（演示数据）\n- 实验组比例：${v.share}%（${r.n.toFixed(0)}次）；对照组需同质、随机分配。\n- 对照：原活动机制；实验：${s.name}\n- KPI：净增量购买、增量贡献毛利；护栏：履约时长、赠品成本、客诉。\n- 假设对照转化：${v.control}%；假设实验转化：${v.treatment}%\n- 假设每单贡献毛利：${v.margin}元；附加成本：${v.cost}元/实验成交；固定成本：${v.fixed}元\n- 演示情景净增量订单：${r.increment.toFixed(1)}，净增量贡献：${money(r.net)}\n\n## 后续待验证\n- 是否能获得具授权的同群组行为口径？\n- 同一阻力在该群组有多大覆盖？\n- 小样本试验的增量是否显著且可复现？\n\n*由不买账实验室静态前端演示生成，无实时AI、无实际实验数据。*\n`;const url=URL.createObjectURL(new Blob([content],{type:'text/markdown;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=`增长实验卡_${i.short}_${c.name}.md`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);toast('实验方案卡已在本地生成 · 所有数值为模拟假设');}
+function cardText(){const c=cohort(),i=issue(),s=sol(),r=calc(),v=state.inputs;return {title:'不买账实验室 · 增长决策卡',scenario:'早八集杯 · 虚构咖啡赠杯活动',cohort:c.name,issue:i.name,issueEvidence:`${getCounts(i).count}条相关表达｜${getCounts(i).conditional}条条件性表达${state.search?'｜加入搜索意图':''}`,solution:s.name,mechanic:s.mechanic,assumption:`对照 ${v.control}% → 实验 ${v.treatment}%（人工假设）`,increment:`${r.increment.toFixed(1)} 单`,net:`${r.net>=0?'+':''}${money(r.net)}`,risk:s.concern,description:'本卡为合成样例与情景测算，不代表实证增量结果。'};}
+function previewCard(){const x=cardText(),box=document.getElementById('modalBody');document.getElementById('modalTitle').textContent='可视化增长决策卡';box.innerHTML=`<div class="visual-decision-card"><div class="eyebrow">LOST DEMAND LAB / EXPERIMENT BRIEF</div><h3>${esc(x.scenario)}</h3><div class="card-data-row"><div><small>待验证购买阻力</small><strong>${esc(x.issue)}</strong></div><div><small>目标群组</small><strong>${esc(x.cohort)}</strong></div></div><p><b>证据摘要：</b>${esc(x.issueEvidence)}</p><p><b>推荐最小动作：</b>${esc(x.solution)} · ${esc(x.mechanic)}</p><p><b>红队关注：</b>${esc(x.risk)}</p><div class="card-outcomes"><div><span>假设增量成交</span><b>${x.increment}</b></div><div><span>模拟净贡献</span><b>${x.net}</b></div></div><small class="card-disclaimer">${esc(x.description)}</small></div><div class="card-export-actions"><button type="button" class="button accent" data-export-png="1">下载PNG图片</button><button type="button" class="button" data-export-html="1">下载可打印HTML / PDF</button><button type="button" class="button" data-copy-card="1">复制摘要</button></div><p class="modal-tiny">纯前端不伪装成已接入灵犀。实际产品未来可在获得权限后接入客户工作台；本版用图片/HTML分享。</p>`;document.getElementById('infoDialog').showModal()}
+function downloadBlob(content,type,name){const url=URL.createObjectURL(content instanceof Blob?content:new Blob([content],{type}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000)}
+function exportHtml(){const x=cardText();const e=t=>esc(t);const html=`<!doctype html><html lang="zh-CN"><meta charset="UTF-8"><title>不买账实验室增长决策卡</title><style>body{font-family:system-ui,"PingFang SC",sans-serif;max-width:770px;margin:58px auto;color:#283b32}header{border-left:6px solid #e95440;padding-left:20px}h1{font-size:29px;margin:4px 0}h2{font-size:17px;margin-top:33px;color:#a94332}.badge{display:inline-block;background:#fce9e2;padding:8px 13px;border-radius:9px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}section{border-bottom:1px solid #e2e8e1;padding-bottom:16px}p{line-height:1.8}small{color:#8d988f}button{padding:10px 16px;border:0;border-radius:8px;background:#e95440;color:white}@media print{button{display:none}body{margin:30px}}</style><header><small>LOST DEMAND LAB · GENERATED DEMO BRIEF</small><h1>不买账实验室｜增长决策卡</h1><p>${e(x.scenario)}</p></header><h2>01 / 待验证的增长假设</h2><div class="grid"><section><small>购买阻力</small><p><strong>${e(x.issue)}</strong></p></section><section><small>沉默群组</small><p><strong>${e(x.cohort)}</strong></p></section></div><p>${e(x.issueEvidence)}</p><h2>02 / 最小商业动作</h2><p><strong>${e(x.solution)}</strong> · ${e(x.mechanic)}</p><h2>03 / 红队关注</h2><p>${e(x.risk)}</p><h2>04 / 模拟情景</h2><p>${e(x.assumption)}；假设新增 ${e(x.increment)}；净贡献 ${e(x.net)}。</p><p class="badge">${e(x.description)}</p><p><small>真实效果仍需随机对照试验；以上数值不是实际营销效果。</small></p><button onclick="window.print()">打印 / 另存为PDF</button></html>`;downloadBlob(html,'text/html;charset=utf-8',`增长决策卡_${x.issue}.html`);toast('已导出可打印HTML，浏览器打开后可另存为PDF')}
+function drawPng(){const x=cardText(),canvas=document.createElement('canvas');canvas.width=1200;canvas.height=1420;const g=canvas.getContext('2d');const font='"PingFang SC","Microsoft YaHei",sans-serif';g.fillStyle='#f7f8f5';g.fillRect(0,0,1200,1420);g.fillStyle='#fff';g.fillRect(68,68,1064,1284);g.fillStyle='#e95440';g.fillRect(68,68,1064,14);function tx(t,size,y,color='#2b3731',weight=500,x=122){g.fillStyle=color;g.font=`${weight} ${size}px ${font}`;g.fillText(t,x,y)}function wrap(t,x,y,max=940,size=29,lh=45,color='#425348',weight=500){g.font=`${weight} ${size}px ${font}`;let line='',arr=[];for(const ch of t){if(g.measureText(line+ch).width>max&&line){arr.push(line);line=ch}else line+=ch}if(line)arr.push(line);arr.slice(0,4).forEach((q,j)=>tx(q,size,y+j*lh,color,weight,x));return y+Math.min(4,arr.length)*lh}tx('LOST DEMAND LAB  /  业务实验简报',23,158,'#d45b44',700);tx('不买账实验室 · 增长决策卡',44,237,'#283a31',800);tx(x.scenario,28,295,'#829087');g.strokeStyle='#edf0eb';g.beginPath();g.moveTo(122,334);g.lineTo(1076,334);g.stroke();tx('01  待验证阻力',25,395,'#d05c47',750);tx(x.issue,39,459,'#253b2e',800);tx('研究群组：'+x.cohort,28,524);tx('证据：'+x.issueEvidence,24,581,'#62776a');tx('02  最小商业动作',25,664,'#d05c47',750);tx(x.solution,36,730,'#263b2f',780);wrap(x.mechanic,122,782,940,26,39);tx('03  红队风险',25,896,'#d05c47',750);wrap(x.risk,122,944,930,25,41);g.fillStyle='#f0f7f1';g.fillRect(122,1060,954,148);tx('假设增量成交',22,1111,'#7a887d',550);tx(x.increment,37,1172,'#2f755a',790);tx('情景净贡献',22,1111,'#7a887d',550,590);tx(x.net,37,1172,'#2f755a',790,590);wrap('注：合成演示数据 · 人工设定购买率 · 不代表真实营销效果',122,1270,950,21,34,'#87938a');canvas.toBlob(blob=>{if(blob)downloadBlob(blob,'image/png',`增长决策卡_${x.issue}.png`);else toast('图片生成失败，请使用HTML导出')},'image/png')}
+let toastTimeout;function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>t.classList.remove('show'),3100)}
+function handleClick(e){const target=e.target.closest('button,[data-open-evidence],[data-select-issue],[data-cohort]');if(!target)return;
+ if(target.matches('[data-close-dialog]')){document.getElementById('infoDialog').close();return}
+ if(target.dataset.closeDrawer){state.drawer=false;render();return}
+ if(target.dataset.step!==undefined&&target.classList.contains('nav-link')){setStep(Number(target.dataset.step));return}
+ if(target.dataset.stepTo!==undefined){setStep(Number(target.dataset.stepTo));return}
+ if(target.dataset.openEvidence){const id=target.dataset.openEvidence;state.issue=id;if(!D.solutions[id].some(s=>s.id===state.solution))setSolution(D.solutions[id][0].id);state.drawer=true;state.evidenceFilter='all';state.evidencePage=1;render();return}
+ if(target.dataset.selectIssue){selectIssue(target.dataset.selectIssue);return}
+ if(target.dataset.wordcloud){state.wordCloud=!state.wordCloud;render();return}
+ if(target.dataset.rank){state.rankBy=target.dataset.rank;render();return}
+ if(target.dataset.cohort){state.cohort=target.dataset.cohort;render();return}
+ if(target.hasAttribute('data-search-toggle')){state.search=!state.search;render();toast(state.search?'已加入搜索辅助证据，假设排序重新计算':'已移除搜索证据，仅按语义与场景匹配排序');return}
+ if(target.dataset.solution){setSolution(target.dataset.solution);state.debateStage=0;render();return}
+ if(target.dataset.filter){state.evidenceFilter=target.dataset.filter;state.evidencePage=1;renderDrawer();return}
+ if(target.dataset.showMore){state.evidencePage++;renderDrawer();return}
+ if(target.dataset.pessimistic){state.inputs.treatment=Math.max(2,Math.round(state.inputs.control+1));state.inputs.cost=Math.min(18,state.inputs.cost+2);render();toast('已切换为更保守的情景假设');return}
+ if(target.dataset.resetCalc){state.inputs={control:10,treatment:18,margin:22,share:50,cost:sol().cost,fixed:sol().fixed};render();return}
+ if(target.dataset.export){downloadCard();return}
+ if(target.dataset.debate){state.debateStage=1;render();document.querySelector('.debate-panel')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+ if(target.dataset.debateSummary){state.debateStage=2;render();document.querySelector('.debate-panel')?.scrollIntoView({behavior:'smooth',block:'start'});return}
+ if(target.dataset.debateClose){state.debateStage=0;render();return}
+ if(target.dataset.cardPreview){previewCard();return}
+ if(target.dataset.exportPng){drawPng();return}
+ if(target.dataset.exportHtml){exportHtml();return}
+ if(target.dataset.copyCard){const x=cardText(),txt=`${x.title}\n${x.scenario}\n假设：${x.issue} / ${x.cohort}\n方案：${x.solution}\n情景：${x.assumption}，假设增量${x.increment}，模拟净贡献${x.net}\n${x.description}`;navigator.clipboard?.writeText(txt).then(()=>toast('摘要已复制')).catch(()=>toast('本地文件可能不支持剪贴板，请使用导出功能'));return}
+ if(target.dataset.info){showInfo(target.dataset.info);return}
+ if(target.id==='aboutBtn'||target.id==='aboutDataLink'){document.getElementById('modalTitle').textContent='数据和能力边界';document.getElementById('modalBody').innerHTML='<p>这是面试展示用<strong>纯静态、全合成数据</strong>的可交互业务原型，并非已连接小红书后台的商业化产品。</p><ul><li>所有评论由案例规则构造；语义标签为开发期AI辅助预处理。</li><li>浏览、加购、成交、群组匹配、搜索关联和排序分值均为模拟。</li><li>真实交互包括筛选、证据钻取、假设排序、成本测算与方案卡本地导出。</li><li>无后端、无实时大模型、无抓取和跨应用追踪。</li></ul><p>产品未来如要上线，需要相应的数据授权、模型接口、服务端处理和A/B测试基础设施。</p>';document.getElementById('infoDialog').showModal();return}
+ if(target.id==='tourBtn'){showTour();return}
+ if(target.id==='mobileMenu'){setMobileMenu(!document.getElementById('sidebar').classList.contains('mobile-open'));return}
+ if(target.id==='closeMobileMenu'||target.id==='mobileNavBackdrop'){setMobileMenu(false);return}
+}
+function setMobileMenu(open){document.getElementById('sidebar').classList.toggle('mobile-open',open);document.getElementById('mobileNavBackdrop').hidden=!open;document.getElementById('mobileMenu').setAttribute('aria-expanded',String(open))}
+function handleInput(e){const el=e.target;if(!el.dataset.range)return;state.inputs[el.dataset.range]=Number(el.value);updateCalcUI();}
+document.addEventListener('click',handleClick);
+document.addEventListener('input',handleInput);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('sidebar').classList.contains('mobile-open'))setMobileMenu(false);if(e.key==='Escape'&&state.drawer){state.drawer=false;render();}if(e.key==='Enter'&&e.target.matches('.ranked-row,.hypothesis'))e.target.click();});
+document.getElementById('infoDialog').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.close();});
+render();
+})();
+
+</script>
+</body>
+</html>
